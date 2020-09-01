@@ -1,0 +1,226 @@
+// mixin to iterate over colors and create CSS class for each one
+.make-color-classes(@i: length(@colors)) when (@i > 0) {
+    .make-color-classes(@i - 1);
+    @color: extract(@colors, @i);
+    @colorVar: "color-@{color}";
+    @colorVarDark: "color-@{color}-dark";
+    @colorVarAlt: "color-@{color}-alt";
+    .@{color} {
+        color: @@colorVar;
+
+        &:after, &:before{
+            background-color: @@colorVar;
+        }
+
+        &.border-light{
+            border-color: fade(@@colorVar, 20%);
+        }
+
+        .border{
+            border-color: @@colorVar;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: fade(@@colorVarAlt, 80%); 
+            background-clip: content-box; 
+        }
+
+        ::-webkit-scrollbar-track {
+            background: fade(@@colorVarAlt, 15%); 
+        }
+
+        .pizi-table-container{
+            &::-webkit-scrollbar-thumb {
+                background: fade(@@colorVar, 80%); 
+                background-clip: content-box;
+            }
+    
+            &::-webkit-scrollbar-track {
+                background: fade(@@colorVar, 15%); 
+            }
+    
+            &.fill{
+                &::-webkit-scrollbar-thumb {
+                    background: fade(@@colorVarAlt, 80%); 
+                    background-clip: content-box;
+                }
+        
+                &::-webkit-scrollbar-track {
+                    background: fade(@@colorVarAlt, 15%); 
+                }
+            }
+        }
+    }
+    [class^="pizi-"].@{color}.fill{
+        background-color: @@colorVar;
+        border-color: @@colorVar;
+        color: @@colorVarAlt; 
+
+        &:not(.secondary){
+            .fill.secondary{
+                color: @@colorVar;  
+             }
+        }
+
+        .pizi-button.secondary:not(.no-active):active{
+            color: @@colorVar; 
+        }
+
+        .alt{
+            color: @@colorVarAlt;
+
+            &.fill{
+                background-color: @@colorVarAlt;
+                color: @@colorVar;
+                border-color:  @@colorVarAlt;
+            }
+        }
+
+        .border-alt{
+            border-color: @@colorVarAlt;
+        }
+
+        .border-alt-light, &.border-alt-light{
+            border-color: fade(@@colorVarAlt, 20%);
+        }
+    }
+    [class^="pizi-"].@{color}.border{
+        border-color: @@colorVar;
+        color: @@colorVar; 
+        
+        .border{
+            border-color: @@colorVar;
+        }
+
+        .alt{
+            color: @@colorVar;
+
+            &.fill{
+                background-color: @@colorVar;
+                color: @@colorVarAlt;
+                border-color:  @@colorVar;
+            }
+        }
+
+        .border-alt{
+            border-color: @@colorVar;
+        }
+
+        .border-alt-light, &.border-alt-light{
+            border-color: lighten(@@colorVar, 10%);
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            //background: #111; 
+           // box-shadow: inset 0 0 40px @@colorVar; 
+        }
+    }
+    [class^="pizi-"].@{color}.simple{
+        color: @@colorVar;  
+
+        .alt{
+            color: @@colorVar;
+
+            &.fill{
+                background-color: @@colorVar;
+                color: @@colorVarAlt;
+                border-color:  @@colorVar;
+            }
+        }
+
+        .border-alt{
+            border-color: @@colorVar;
+        }
+
+        .border-alt-light, &.border-alt-light{
+            border-color: lighten(@@colorVar, 10%);
+        }
+    }
+    .pizi-container.@{color}{
+        &::-webkit-scrollbar-thumb {
+            background: fade(@@colorVar, 80%); 
+            background-clip: content-box;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: fade(@@colorVar, 15%); 
+        }
+
+        &.fill{
+            &::-webkit-scrollbar-thumb {
+                background: fade(@@colorVarAlt, 80%); 
+                background-clip: content-box;
+            }
+    
+            &::-webkit-scrollbar-track {
+                background: fade(@@colorVarAlt, 15%); 
+            }
+        }
+    }
+}
+
+ // mixin to iterate over colors and create CSS class for each one
+ .background-colors(@i: length(@colors)) when (@i > 0) {
+    .background-colors(@i - 1);
+    @colorBack: extract(@colors, @i);
+    @colorVarBack: "color-@{colorBack}";
+    @colorVarBackDark: "color-@{colorBack}-dark";
+    &.@{colorBack} {
+        background-color: @@colorVarBack;
+        color: @@colorVarBackDark;  
+    }
+}
+
+.alt-colors(@i: length(@colors)) when (@i > 0) {
+    .alt-colors(@i - 1);
+    @colorAlt2: extract(@colors, @i);
+    @colorVarAlt2: "color-@{colorAlt2}-alt";
+    &.@{colorAlt2} {
+        color: @@colorVarAlt2;  
+    }
+}
+
+.size(){
+    &.small{
+        font-size: @font-small;
+    }
+
+    &.medium{
+        font-size: @font-medium;
+    }
+
+    &.large{
+        font-size: @font-large;
+    }
+}
+
+@gradient-height: 8px;
+.gradient(){
+    content: "";
+    display: block;
+    width: 100%;
+    height: @gradient-height;
+    position: absolute;
+    z-index: 1;
+}
+
+.gradient-top(@color){
+    position: relative;
+
+    &:before{
+        .gradient();
+        background: linear-gradient(to top, @color 0%, rgba(0,0,0,0.2) 100%);
+        top: -@gradient-height;
+    }
+}
+
+.gradient-bottom(@color){
+    position: relative;
+
+    &:after{
+        .gradient();
+        background: linear-gradient(to bottom, @color 40%, transparent 100%);
+        bottom: -@gradient-height;
+    }
+}

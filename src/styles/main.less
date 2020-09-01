@@ -1,0 +1,69 @@
+@charset "UTF-8";
+/* Normalize */
+@import "~bootstrap/dist/css/bootstrap-reboot.css";
+@import "~animate.css/animate.css";
+@import (reference) "variables";
+@import (reference) "component-mixins";
+
+html{
+    font-size: @font-size;
+    font-weight: @font-weight;
+    background-color: @background-dark;
+    //font-family: @font-family;
+    color: @color-white;
+    line-height: @line-height;
+}
+
+body{
+    font-size: @font-size;
+    font-weight: @font-weight-slim;
+    background-color: @background-dark;
+    //font-family: @font-family;
+    //-webkit-font-smoothing: antialiased;
+    color: @color-white;
+    line-height: @line-height;
+    padding: 0;
+}
+
+:disabled{
+    opacity: 0.5;
+    cursor: not-allowed !important;
+    pointer-events: none;
+}
+
+*:focus{
+    outline: none;
+    box-shadow: none;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+ 
+/* Scrollbar Track */
+::-webkit-scrollbar-track {
+    //box-shadow: inset 0 0 2px @color-secondary; 
+    border-radius: @border-radius;
+    background: fade(@color-secondary, 15%); 
+}
+
+/* Scrollbar */
+::-webkit-scrollbar-corner{
+    background: transparent; 
+}
+ 
+/* Scrollbar Cursor */
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: fade(@color-secondary, 80%); 
+    background-clip: content-box; 
+    border: 2px solid transparent;
+}
+
+@import "typography";
+@import "utilities";
+@import "container";
+
+.make-color-classes();

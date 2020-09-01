@@ -1,0 +1,44 @@
+@import (reference) "../../../styles/variables.less";
+@import (reference) "../../../styles/component-mixins.less";
+
+.pizi-number-input{
+
+    .pizi-number-input__input{
+        display: inline-flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        width: 250px;
+
+        input{
+            margin: 0 1em;
+            color: @color-white;
+            font-size: 1.6em;
+            letter-spacing: 1px;
+            text-align: center;
+            appearance: none;
+            background-color: transparent;
+            border: none;
+            display: inline-block;
+
+            &::-webkit-inner-spin-button, 
+            &::-webkit-outer-spin-button { 
+                -webkit-appearance: none; 
+                margin: 0; 
+            }
+        }
+
+        button svg{
+            color: @color-grey;
+        }
+
+        button:nth-child(1){
+            margin-left: -0.48em;
+        }
+
+        button:nth-child(3){
+            margin-right: -0.48em;
+        }
+    }
+    
+}

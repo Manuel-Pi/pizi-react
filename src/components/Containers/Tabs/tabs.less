@@ -1,0 +1,178 @@
+@import (reference) "../../../styles/variables.less";
+@import (reference) "../../../styles/component-mixins.less";
+
+.pizi-tab{
+    width: 100%;
+}
+
+.pizi-tabs{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    > ul{
+        margin: 0;
+        padding: 0;
+        display: inline-flex;
+        width: 100%;
+
+        &.simple{
+            border-bottom: 1px solid;
+        }
+
+        li{
+            z-index: 1;
+            display: inline;
+            border: @border;
+            border-radius: @border-radius @border-radius 0 0;
+            position: relative;
+            filter: opacity(50%);
+    
+            &.current{
+                z-index: 2;
+                filter: opacity(100%);
+    
+                // Rounding borders
+                &:before{
+                    content: "";
+                    display: block;
+                    width: 12px;
+                    height: 12px;
+                    bottom: 0;
+                    left: -12px;
+                    position: absolute;
+                    background-color:inherit;
+                    -webkit-mask-image: radial-gradient(circle 12px at 0px 0px, transparent 0, transparent 12px, black 8px);
+                    mask-image: radial-gradient(circle 12px at 0px 0px, transparent 0, transparent 12px, black 8px);
+                }
+    
+                &:nth-child(1):before{
+                    content: none;
+                }
+    
+                &:after{
+                    content: "";
+                    display: block;
+                    width: 12px;
+                    height: 12px;
+                    bottom: 0;
+                    right: -12px;
+                    position: absolute;
+                    background-color:inherit;
+                    -webkit-mask-image: radial-gradient(circle 12px at 12px 0px, transparent 0, transparent 12px, black 8px);
+                    mask-image: radial-gradient(circle 12px at 12px 0px, transparent 0, transparent 12px, black 8px);
+                }
+            }
+    
+            // Rounding border for first element
+            &:nth-child(1):before{
+                content: "";
+                display: block;
+                width: 12px;
+                height: 12px;
+                bottom: -12px;
+                left: -3px;
+                position: absolute;
+                background-color:inherit;
+                -webkit-mask-image: radial-gradient(circle 12px at 12px 12px, transparent 0, transparent 12px, black 8px);
+                mask-image: radial-gradient(circle 12px at 12px 12px, transparent 0, transparent 12px, black 8px);
+            }
+
+            .pizi-button{
+                margin: 0;
+            }
+        }
+    
+        li + li {
+            margin-left: 1px;
+        }
+    }
+
+    
+
+    &.tabs-position-top{
+        li{
+            border-bottom: none;
+
+            &.border{
+                border-bottom: @border;
+                position: relative;
+                top: 2px;
+    
+                &.current{
+                    border-bottom-color: #111 !important;
+                }
+            }
+        }
+    }
+
+    &.tabs-position-left{
+        display: flex;
+
+        > ul{
+            flex-direction: column;
+
+            &.simple{
+                border-right-width: 1px;
+                border-right-style: solid;
+            }
+
+            li{
+                border-radius: @border-radius 0 0 @border-radius;
+                border-right: none;
+    
+                &.current{
+                    &:before{
+                        right: 0;
+                        left: initial;
+                        top: -14px;
+                        bottom: initial;
+                    }
+    
+                    &:after{
+                        right: 0;
+                        left: initial;
+                        top: initial;
+                        bottom: -14px;
+                        -webkit-mask-image: radial-gradient(circle 12px at 0px 12px, transparent 0, transparent 12px, black 8px);
+                        mask-image: radial-gradient(circle 12px at 0px 12px, transparent 0, transparent 12px, black 8px);
+                    }
+                }
+    
+                &:nth-child(1):before{
+                    right: -12px;
+                    left: initial;
+                    top: -3px;
+                    bottom: initial;
+                    -webkit-mask-image: radial-gradient(circle 12px at 12px 12px, transparent 0, transparent 12px, black 8px);
+                    mask-image: radial-gradient(circle 12px at 12px 12px, transparent 0, transparent 12px, black 8px);
+                }
+    
+                &.border{
+                    border-right: @border;
+                    position: relative;
+                    left: 2px;
+        
+                    &.current{
+                        border-right-color: #111 !important;
+                    }
+                }
+            }
+    
+            li + li {
+                margin-left: 0px;
+                margin-top: 1px;
+            }
+        }
+    }
+
+    .pizi-container{
+        border-radius: 0 @border-radius @border-radius @border-radius;
+    }
+
+    .pizi-li.secondary.fill:not(.current){
+        background-color: @color-secondary-light2;
+        border-color: @color-secondary-light2;
+        filter: brightness(1);
+    }
+}

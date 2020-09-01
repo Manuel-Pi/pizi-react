@@ -1,0 +1,94 @@
+/**********************************************
+                    Fonts
+ **********************************************/
+@font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+@letter-spacing-medium: 0.02em;
+@line-height: 1.5;
+@font-size: 16px;
+
+@font-weight-slim: 100;
+@font-weight: 200;
+@font-weight-bold: 400;
+
+@font-medium: 1rem;
+@font-small: 0.8rem;
+@font-large: 1.5rem;
+
+/**********************************************
+                    Colors
+ **********************************************/
+@color-black: #000;
+@color-light-black: #333;
+@color-light-grey: #bbb;
+@color-grey: #888;
+@color-dark-grey: #555;
+@color-white: #ddd;
+@background-dark: #111;
+
+/* MAIN */ 
+@color-main: peru;
+@color-main-light: lighten(@color-main, 8%);
+@color-main-dark: darken(@color-main, 30%);
+@color-main-alt: @color-secondary;
+@color-main-contrast: @color-secondary;
+
+/* SECONDARY */ 
+@color-secondary: #111;
+@color-secondary-light: lighten(@color-secondary, 10%);
+@color-secondary-light2: lighten(@color-secondary, 20%);
+@color-secondary-dark: @color-main;
+@color-secondary-alt: @color-main;
+
+/* TERITARY */ 
+@color-teritary: #666;
+@color-teritary-light: lighten(@color-teritary, 20%);
+@color-teritary-dark: darken(@color-teritary, 20%);
+@color-teritary-alt: @color-light-grey;
+
+/* OTHER */
+@color-blue: #85C1E9;
+@color-blue-dark: darken(@color-blue, 40%);
+@color-blue-alt: @color-secondary; 
+
+@color-success: #2ECC71;
+@color-success-dark: darken(@color-success, 30%); 
+@color-success-alt: @color-secondary; 
+
+@color-error: #EC7063 ;
+@color-error-dark: darken(@color-error, 40%);
+@color-error-alt: @color-secondary; 
+
+@color-warn: #F1C40F;
+@color-warn-dark: darken(@color-warn, 30%);
+@color-warn-alt: @color-secondary; 
+
+/* ALT */ 
+@color-main-alt-light: lighten(@color-main-alt, 8%);
+@color-main-alt-dark: darken(@color-main, 10%);
+
+@color-secondary-alt-light: lighten(@color-secondary-alt, 10%);
+@color-secondary-alt-dark: darken(@color-secondary, 10%);
+
+/* GROUPS */
+@colors: main, secondary, teritary, blue, success, error, warn;
+
+/**********************************************
+                    Borders
+ **********************************************/
+ @border-width: 0.18rem;
+ @border: @border-width solid transparent;
+ @border-radius: 0.8em;
+
+ /**********************************************
+                Padding - Margin
+ **********************************************/
+ @padding: 0.3em 0.6em;
+ @margin: 0.3em;
+
+/**********************************************
+                    Breakpoints
+ **********************************************/
+ @xs: 0px;
+ @sm: 575px;
+ @md: 768px;
+ @lg: 992px;

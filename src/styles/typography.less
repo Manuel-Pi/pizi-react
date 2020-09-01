@@ -1,0 +1,59 @@
+/**********************************************
+                    Headings
+ **********************************************/
+h1, h2, h3, h4, h5, h6{
+    font-weight: @font-weight;
+    color: @color-main;
+    margin-bottom: 0.4em;
+    line-height: @line-height;
+    text-overflow: ellipsis;
+    padding: 0;
+    border: @border;
+    border-radius: 0.8rem;
+
+    &.fill, &.border{
+        padding: 0 0.8rem;
+    }
+}
+
+h1{
+    font-size: 2.6rem;
+}
+
+h2{
+    font-size: 2.2rem;
+}
+
+h3{
+    font-size: 1.8rem;
+}
+
+h4{
+    font-size: 1.4rem;
+    border-radius: 0.7rem;
+}
+
+h5{
+    font-size: 1.2rem;
+    border-radius: 0.6rem;
+}
+
+h6{
+    font-size: @font-medium;
+    border-radius: 0.5rem;
+}
+
+/**********************************************
+                    Paragraph
+ **********************************************/
+p{
+    padding: 0.4rem;
+    border-radius: @border-radius;
+
+    &:not(.simple){
+        text-indent: 0.2rem;
+        text-align: justify;
+    }
+}
+
+@import "typography-sm";

@@ -1,0 +1,130 @@
+@import (reference) "../../../styles/variables.less";
+@import (reference) "../../../styles/component-mixins.less";
+@import (reference) "menuapp.less";
+
+.pizi-menubar{
+    background-color: transparent !important;
+    position: fixed;
+    //overflow: hidden;
+    top: 0;
+    width: 100%;
+    max-width: inherit;
+    z-index: 2000;
+    box-shadow: 0 0 6px 2px #333;
+
+    .pizi-menubar__bar{
+        display: flex;
+        height: @menu-bar-height;
+        border-bottom: 1px solid rgba(0,0,0,0.2);
+        .background-colors();
+
+        .pizi-menubar__bar__logo{
+            height: 100%;
+            padding: 2px 10px 2px 6px;
+
+            >*{
+                height: 100%;
+                width: auto;
+            }
+        }
+
+        .pizi-menubar__bar__user{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            margin-right: 20px;
+
+            svg{
+                font-size: 32px;
+            }
+
+            > div{
+                display: flex;
+                flex-direction: column;
+                margin-left: 8px;
+                overflow: hidden;
+
+                label{
+                    margin: 0;
+                    font-size: 16px;
+                    line-height: 16px;
+                }
+
+                span{
+                    font-size: 18px;
+                    line-height: 18px;
+                    letter-spacing: 0.5;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+        }
+
+        .pizi-button-group{
+            padding: 0;
+            border: none;
+            height: 100%;
+            width: auto;
+            margin-left: auto;
+            border-radius: 0;
+            background-color: transparent !important;
+    
+            .menu-button{
+                padding: 0;
+                font-size: 1.6em;
+            }
+        }
+
+        &.main{
+            border-color: @color-secondary-light;
+            box-shadow: 0 0 6px 2px rgba(0,0,0,0.2);
+        }
+
+        &.secondary{
+            border-color: @color-main-light;
+            box-shadow: 0 0 20px 2px rgba(0,0,0,0.2);
+
+            .pizi-menubar__bar__user{
+                label{
+                    color: #888;
+                }
+            }
+        }
+    }
+
+    .pizi-menubar__container{
+        display: none;
+        height: calc(100% ~"-" 40px);
+        overflow: hidden;
+        animation-duration: 0.2s;
+
+        .pizi-menubar__container__items{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            max-width: 500px;
+            width: 100%;
+            padding: 1rem;
+
+            a{
+                &:hover{
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+
+    &.open{
+        height: 100%;
+        
+        .pizi-menubar__container{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            flex-direction: column;
+        }
+    }
+}

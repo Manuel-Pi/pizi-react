@@ -1,0 +1,69 @@
+@import (reference) "../../../styles/variables.less";
+@import (reference) "../../../styles/component-mixins.less";
+
+.pizi-select-input{
+    width: 100%;
+    max-width: 350px;
+    position: relative;
+
+    select{
+        background-color: transparent;
+        appearance: none;
+        border: @border;
+        border-radius: @border-radius;
+        border-color: @color-teritary;
+        width: 100%;
+        margin-top: 0.6em;
+        font-size: 1.4em;
+        padding: 0.3em 0;
+        color: @color-white;
+        cursor: pointer;
+        height: auto;
+
+        &[multiple]{
+            option:checked {
+                background: fade(@color-main, 80%);
+            }
+        }
+
+        &[multiple]:focus{
+            option:checked {
+                background: transparent linear-gradient(0deg, @color-main 0%, @color-main 100%);
+            }
+        }
+
+        option{
+            border-radius: 0.3em;
+            padding: 0;
+            margin: 0;
+            padding: 0.1em 0.3em;
+            margin: 0 0.1em 2px 0.3em;
+            position: relative;
+
+            &[disabled]{
+                color: @color-white;
+                opacity: 1;
+
+                &:checked{
+                    color: @color-secondary;
+                }
+            }
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: fade(@color-teritary, 80%); 
+            background-clip: content-box;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: fade(@color-teritary, 15%); 
+        }
+    }
+
+    .caret{
+        position: absolute;
+        right: 0.68em;
+        bottom: 0.7em;
+        font-size: 1.4em;
+    }
+}

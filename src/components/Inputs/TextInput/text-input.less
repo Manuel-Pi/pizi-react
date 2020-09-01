@@ -1,0 +1,57 @@
+@import (reference) "../../../styles/variables.less";
+@import (reference) "../../../styles/component-mixins.less";
+
+.pizi-text-input{
+
+    .pizi-text-input__input{
+        position: relative;
+
+        input{
+            background-color: inherit;
+            border: none;
+            border-bottom: @border;
+            border-color: @color-grey;
+            color: @color-white;
+            font-size: 1.4em;
+            border-width: 0.1em;
+            max-width: 250px;
+            width: 100%;
+            
+            &.password{
+                padding-right: 30px;
+            }
+
+            &:placeholder-shown{
+                opacity: 0.6;
+                font-style: italic;
+            }
+        }
+
+        .password-show-button{
+            position: absolute;
+            right: 0;
+            top: 0;
+            margin-right: 0;
+            padding-right: 0;
+        }
+    }
+
+    &.alt{
+        label{
+            color: fade(@color-secondary, 70%);
+        }
+
+        .pizi-text-input__input{
+            input{
+                color: @color-secondary;
+                border-color: fade(@color-secondary, 25%);
+            }
+        }
+    }
+
+    &.error{
+        input{
+            border-color: @color-error;
+        }
+    }
+}

@@ -1,0 +1,109 @@
+@import (reference) "../../../styles/variables.less";
+@import (reference) "../../../styles/component-mixins.less";
+
+@icon-width: 16px;
+@icon-height: 2px;
+@icon-width-small: 12px;
+@icon-width-large: 26px;
+@icon-height-large: 3px;
+.pizi-accordion{
+
+    ul{
+        margin: 0;
+        padding: 0;
+    }
+    
+    li{
+        list-style: none;
+
+        .pizi-heading{
+            padding: 0;
+            margin: 0;
+            border: none;
+            position: relative;
+            display: flex;
+
+            button{
+                width: 100%;
+            }
+   
+            i{
+                font-style: normal;
+                position: absolute;
+                top: calc(50% ~"-" @icon-width / 2 ~"-" @icon-height / 2);
+                right: @icon-width;
+                height: @icon-width;
+                width: @icon-width;
+                transition: all 0.3s linear;
+
+                &:before, &:after{
+                    content: "";
+                    width: 100%;
+                    height: @icon-height;
+                    position: absolute;
+                    top: 50%;
+                    transition: all 0.2s linear;
+                    .background-colors();
+                }
+
+                &:after{
+                    transform: rotateZ(90deg);
+                    transform-origin: 50% 50%;
+                }
+
+                &.small{
+                    top: calc(50% ~"-" @icon-width-small / 2 ~"-" @icon-height / 2);
+                    width: @icon-width-small; 
+                    height: @icon-width-small;
+                }
+
+                &.large{
+                    top: calc(50% ~"-" @icon-width-large / 2 ~"-" @icon-height-large / 2);
+                    width: @icon-width-large; 
+                    height: @icon-width-large;
+                    right: @icon-width-large;
+
+                    &:before, &:after{
+                        height: @icon-height-large; 
+                    }
+                }
+            }
+        }
+
+        &.open{
+            i{
+                transform-origin: 50% calc(50% ~"+" @icon-height / 2);
+                transform: rotateZ(180deg);
+
+                &:after{
+                    transform: rotateZ(360deg);
+                }
+            }
+        }
+
+        .item-content{
+            height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            margin: 0 @margin;
+            padding: 0;
+            border: 0;
+            border-radius: @border-radius;
+
+            .pizi-accordion-item{
+                font-size: 1em;
+                overflow: auto;
+                padding: @padding;
+                margin: 0;
+            }
+
+            &.open{
+                height: auto;
+            }
+        }
+
+        &:not(.open) .item-content{
+            height: 0 !important;
+        }
+    }
+}

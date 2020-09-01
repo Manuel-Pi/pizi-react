@@ -1,0 +1,75 @@
+@import (reference) "../../../styles/variables.less";
+@import (reference) "../../../styles/component-mixins.less";
+
+.pizi-button{
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    font-family: @font-family;
+    font-weight: @font-weight;
+    border: @border;
+    border-radius: @border-radius;
+    font-size: @font-medium;
+    line-height: @line-height;
+    padding: @padding;
+    cursor: pointer;
+    letter-spacing: @letter-spacing-medium;
+    justify-content: center;
+    margin: @margin;
+
+    .size();
+
+    &:active:not(.no-active){
+        .background-colors();
+
+        &.fill, &.icon{
+            filter: brightness(0.6);
+        }
+        &.icon{
+            background-color: transparent;
+        }
+    }
+
+    &.icon{
+        padding: 0.3em;
+        border-radius: 50px;
+
+        svg{
+            height: 1.2em !important;
+            width: 1.2em !important;  
+        }
+    }
+
+    svg{
+        height: 1em !important;
+        width: 1em !important;  
+        pointer-events: none;
+
+        &.right{
+            margin-left: 0.4em;
+        }
+
+        &.left{
+            margin-right: 0.4em;
+        }
+    }
+
+    &.left{
+        margin-right: auto !important;
+    }
+
+    &.right{
+        margin-left: auto !important;
+    }
+    
+    &.center{
+        
+        &:first-child{
+            margin-left: auto !important;
+        }
+
+        &:last-child{
+            margin-right: auto !important;
+        }
+    }
+}

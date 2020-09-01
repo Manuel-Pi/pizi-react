@@ -1,0 +1,22 @@
+@import (reference) "../../../styles/variables.less";
+@import (reference) "../../../styles/component-mixins.less";
+
+.pizi-link{
+    margin: @margin;
+    text-underline-offset: 0.3em;
+    text-decoration-thickness: 1px;
+    .size();
+    color: @color-white;
+
+    &:hover{
+        color: @color-main;
+    }
+
+    &.teritary{
+        &:hover{
+            color: @color-light-grey;
+        }
+    }
+
+    
+}

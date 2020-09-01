@@ -1,0 +1,38 @@
+/* Set breakpoint for js */
+body:before {
+	content: "xs";
+	display: none;
+	visibility: hidden;
+}
+
+@media (min-width: @sm) {
+	body:before {
+		content: "sm";
+	}
+}
+
+@media (min-width: @md) {
+	body:before {
+		content: "md";
+	}
+}
+
+@media (min-width: @lg) {
+	body:before {
+		content: "lg";
+	}
+}
+
+.hidden{
+    display: none !important;
+}
+
+.invisible{
+    visibility: hidden !important;
+}
+
+.use-focus{
+    *:focus{
+        box-shadow: 0px 0px 0px 4px cornflowerblue;
+    }
+}

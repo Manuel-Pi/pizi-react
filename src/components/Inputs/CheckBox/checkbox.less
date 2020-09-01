@@ -1,0 +1,54 @@
+@import (reference) "../../../styles/variables.less";
+@import (reference) "../../../styles/component-mixins.less";
+
+.pizi-checkbox{
+    position: relative;
+
+    &.position-right{
+        .pizi-checkbox__input{
+            display: flex;
+            align-items: center;
+        }   
+
+        input{
+            margin-top: 0em;
+            margin-right: 0.6em;
+            width: 1.2em;
+            height: 1.2em;
+            border-radius: 0.4em;
+            line-height: 1.2em;
+        }
+
+        label{
+            cursor: pointer;
+        }
+
+        .checkbox__input__checked{
+            font-size: 1.4em;
+            bottom: 0.1em;
+        }
+    }
+
+    input{
+        margin-top: 0.6em;
+        appearance: none;
+        color: @color-teritary;
+        width: 1.8em;
+        height: 1.8em;
+        border: @border-width solid currentColor;
+        border-radius: 0.5em;
+        background-color: transparent;
+        display: grid;
+        place-content: center;
+        cursor: pointer;
+    }
+
+    .checkbox__input__checked{
+        position: absolute;
+        bottom: 0;
+        left: 0.1em;
+        color: @color-main;
+        font-size: 2em;
+        pointer-events: none;
+    }
+}

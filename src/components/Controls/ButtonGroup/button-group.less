@@ -1,0 +1,27 @@
+@import (reference) "../../../styles/variables.less";
+@import (reference) "../../../styles/component-mixins.less";
+
+.pizi-button-group{
+    display: flex;
+    align-items: center;
+    padding: 0 0.2em;
+    border-radius: @border-radius;
+    background-color: transparent;
+    border: @border;
+    font-size: @font-medium;
+    width: 100%;
+
+    &.small{
+        padding: 0.2em 0.4em;
+    }
+
+    &.simple{
+        padding: 0.2em 0;
+    }
+
+    .size();
+
+    button + button{
+        margin-left: 0.4em;
+    }
+}

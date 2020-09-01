@@ -1,0 +1,115 @@
+@import (reference) "../../../styles/variables.less";
+@import (reference) "../../../styles/component-mixins.less";
+
+.pizi-table{
+    border: @border;
+    border-radius: @border-radius;
+    flex: 1 auto;
+    word-break: break-all;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+
+    &.fill{
+        table{
+            thead{
+                th{
+                    border-color: @color-secondary;
+                }
+            }
+        }
+    }
+
+    &.border{
+        .pizi-pagination{
+            border: none;
+            border-top: 2px solid peru;
+            border-radius: 0;
+        }
+    }
+
+    .pizi-table-container{
+        overflow: auto;
+        position: relative;
+        height: 100%;
+        max-height: inherit;
+
+        &.static-header{
+            thead th{
+                position: sticky;
+                top: 0;
+            }
+        }
+    }
+
+    table{
+        border-collapse: separate;
+        border-spacing: 0;
+        width: 100%;
+        color: inherit;
+    }
+
+    thead{
+
+        th{
+            white-space: nowrap;
+            vertical-align: middle;
+            border-bottom: @border;
+            border-color: @color-secondary;
+            overflow: hidden;
+            .background-colors();
+        }
+
+        .head-cell{
+            display: inline-flex;
+            align-items: center;
+            background-color: transparent;
+            border: none;
+            font-size: 1em;
+            width: 100%;
+            padding-right: 0;
+            padding-left: 0.5rem;
+            justify-content: flex-start;
+            margin: 0;
+
+            &.small-sort{
+                padding-left: 0;
+
+                svg{
+                    margin-left: 0;
+                }
+            }
+
+            svg{
+                visibility: hidden;
+                opacity: 0.5;
+            }
+        }
+
+        .order{
+            svg{
+                visibility: visible;
+            }
+        }
+
+    }
+
+    tbody{
+        td{
+            padding: 0.4rem 0.6rem;
+            overflow: hidden;
+        }
+    }
+
+    &:not("no-even-color"){
+        tbody{
+            tr:nth-child(even) {
+                td{
+                    background-color: rgba(0,0,0,0.1);
+                }
+            }
+        }
+    }
+
+    @import "table-sm";
+}

@@ -1,0 +1,154 @@
+@import (reference) "../../../styles/variables.less";
+@import (reference) "../../../styles/component-mixins.less";
+
+.pizi-list-input{
+
+    &.alt{
+        label, button.pizi-button svg{
+            color: fade(@color-secondary, 70%);
+        }
+        .pizi-list-input__input{
+            span{
+                color: @color-secondary;
+            }
+        }
+    }
+
+    &.large{
+        .pizi-list-input__input{
+            width: 350px;
+        }
+    }
+
+    .pizi-list-input__input{
+        display: inline-flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 250px;
+
+        span{
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            color: @color-white;
+            font-size: 1.6em;
+            letter-spacing: 1px;
+            max-width: 250px;
+            position: relative;
+            overflow: hidden;
+            top: -1px;
+
+            .values{
+                width: 100%;
+                margin: 0;
+                padding: 0;
+                display: inline-flex;
+                list-style: none;
+                position: relative;
+
+                li{
+                    min-width: 100%;
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center;
+                    line-height: 1.2em;
+                    word-break: break-all;
+                }
+            }
+
+            .value{
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                width: 100%;
+                text-align: center;
+                line-height: 1em;
+                user-select: none;
+            }
+        }
+
+
+        select{
+            appearance: none;
+            background-color: transparent;
+            border: none;
+            height: 0;
+            visibility: hidden;
+        }
+
+        .pizi-list-input__values{
+            height: 0;
+            overflow: hidden;
+            visibility: hidden;
+        }
+
+        button svg{
+            color: @color-grey;
+        }
+
+        button:nth-child(1){
+            margin-left: -0.5em;
+        }
+
+        button:nth-child(3){
+            margin-right: -0.5em;
+        }
+    }
+
+    &.vertical{
+        margin-left: 0;
+
+        .pizi-list-input__vertical{
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            height: 2.4em;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+
+            ul{
+                display: inline-flex;
+                flex-direction: column;
+                align-items: center;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                position: absolute;
+                top: 0;
+                left: 0;
+                font-size: 1.6em;
+                transition: top 0.2s ease;
+                width: 100%;
+
+                li{
+                    align-items: center;
+                    color: @color-white;
+                    letter-spacing: 1px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    user-select: none;
+                    width: 100%;
+                    text-align: center;
+                }
+            }
+        }
+
+        span{
+            .value{
+                //text-align: left;
+            }
+        }
+
+        .pizi-list-input__vertical__buttons{
+            display: inline-flex;
+            flex-direction: column;
+
+            button{
+                padding: 0.1em;
+                margin: 0;
+            }
+        }
+    }
+}
