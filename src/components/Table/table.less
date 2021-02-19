@@ -1,0 +1,95 @@
+@import (reference) '../../styles/variables.less';
+@import (reference) "../../styles/component-mixins.less";
+
+.pizi-table{
+    border-radius: @border-radius;
+    padding: 8px;
+
+    @import 'table-alt';
+    .appearance();
+
+    &.fill{
+        table{
+            color: @color-black;
+
+            thead{
+                th{
+                    border-color: @color-black;
+                }
+            }
+
+            .head-cell{
+                color: @color-black;
+
+                svg{
+                    color: @color-light-black;
+                }
+            }
+
+            tr:nth-child(even) {
+                td{
+                    color: @color-light-black;
+                }
+            }
+        }
+    }
+
+    table{
+        border-collapse: collapse;
+        width: 100%;
+        color: @color-white;
+    }
+
+    thead{
+        th{
+            white-space: nowrap;
+            padding: 0.3em 0.6em;
+            vertical-align: middle;
+            border-bottom: @border;
+        }
+
+        .head-cell{
+            display: flex;
+            align-items: center;
+            background-color: transparent;
+            border: none;
+            margin-left: -0.6em;
+            font-size: 1.4em;
+            width: 100%;
+
+            svg{
+                visibility: hidden;
+                color: @color-grey;
+            }
+        }
+
+        .order{
+            svg{
+                visibility: visible;
+            }
+        }
+
+    }
+
+    tbody{
+        td{
+            padding: 0.4em 0.6em;
+        }
+
+        tr + tr {
+            td{
+                border-top: 1px solid @color-dark-grey;
+            }
+        }
+
+        tr:nth-child(even) {
+            td{
+                color: @color-light-grey;
+            }
+        }
+    }
+
+    .pizi-pagination{
+        margin: 8px calc(-8px ~"-" @border-width) calc(-8px ~"-" @border-width) calc(-8px ~"-" @border-width);
+    }
+}

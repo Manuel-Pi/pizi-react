@@ -1,0 +1,49 @@
+.appearance(){
+    &.fill{
+        background-color: @color-main;
+        color: @color-secondary;
+        border: @border;
+
+        &:not(:not(button)):active{
+            background-color: @color-main-light;
+            border-color: @color-main-light;
+        }
+    }
+    
+    &.border{
+        border: @border;
+        background-color: transparent;
+        color: @color-main;
+
+        &:not(:not(button)):active{
+            background-color: @color-main;
+            color: @color-secondary;
+        }
+    }
+    
+    &.simple{
+        border: @border;
+        background-color: transparent !important;
+        border-color: transparent !important;
+        color: @color-main;
+
+        &:not(:not(button)):active{
+            background-color: transparent;
+        }
+    }
+    @import "component-mixins-alt";
+}
+
+.size(){
+    &.small{
+        font-size: @font-small;
+    }
+
+    &.medium{
+        font-size: @font-medium;
+    }
+
+    &.large{
+        font-size: @font-large;
+    }
+}

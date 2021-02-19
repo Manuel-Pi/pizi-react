@@ -1,20 +1,11 @@
 const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
-module.exports = {
-    mode: "production",
 
-    // Enable sourcemaps for debugging webpack's output.
-    devtool: "source-map",
-
+let config = {
+    devtool: false,
     entry: "./src/index.tsx",
 
-    output:{
-        libraryTarget: 'umd',
-        globalObject: 'this'
-    },
-
     resolve: {
-        // Add '.ts' and '.tsx' as resolvable extensions.
         extensions: [".ts", ".tsx",".js", ".jsx", ".less"]
     },
 
@@ -29,12 +20,6 @@ module.exports = {
                     }
                 ]
             },
-            // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-            {
-                enforce: "pre",
-                test: /\.js$/,
-                loader: "source-map-loader"
-            },
             {
                 test: /\.less$/,
                 use: [
@@ -45,34 +30,34 @@ module.exports = {
                         }
                     },
                     "extract-loader",
-                    {
-                        loader: "css-loader",
-                        options: {
-                            sourceMap: true
-                        }
-                    },
+                    "css-loader",
                     "less-loader"
                 ]
             }
         ]
     },
     plugins:[
-        /*new webpack.DefinePlugin({
-            ENV_PORT: JSON.stringify(process.env.PORT),
-        }),*/
         new CopyPlugin({
             patterns: [
                 "src/index.html"
             ],
           })
     ]
-
-    // When importing a module whose path matches one of the following, just
-    // assume a corresponding global variable exists and use that instead.
-    // This is important because it allows us to avoid bundling all of our
-    // dependencies, which allows browsers to cache those libraries between builds.
-/* externals: {
-        "react": "React",
-        "react-dom": "ReactDOM"
-    }*/
 }
+
+module.exports = (env, argv) => {
+
+    if (argv.mode === 'development') {
+        console.log("Development build...");
+        config.devtool = 'eval-source-map';
+    }
+  
+    if (argv.mode === 'production') {
+        config.externals = {
+            "react": "React",
+            "react-dom": "ReactDOM"
+        }
+    }
+  
+    return config;
+  };

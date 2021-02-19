@@ -1,0 +1,57 @@
+@import (reference) '../../styles/variables.less';
+@import (reference) "../../styles/component-mixins.less";
+
+.pizi-button{
+    display: flex;
+    align-items: center;
+    background-color: @color-main;
+    font-family: @font-family;
+    border: @border;
+    border-radius: @border-radius;
+    font-size: @font-medium;
+    padding: 0.3em 0.6em;
+    //opacity: 0.8;
+    cursor: pointer;
+    color: @color-secondary;
+    letter-spacing: @letter-spacing-medium;
+    @import 'button-alt';
+
+    .appearance();
+    .size();
+
+    &.small{
+        //padding: 0.2em 0.4em;
+    }
+
+    &.icon{
+        padding: 0.3em;
+        border-radius: 50px;
+
+        svg{
+            height: 1.2em !important;
+            width: 1.2em !important;   
+        }
+    }
+
+    svg{
+        height: 1em !important;
+        width: 1em !important;    
+
+        &.right{
+            margin-left: 0.4em;
+        }
+
+        &.left{
+            margin-right: 0.4em;
+        }
+    }
+
+
+    &.left{
+        margin-right: auto;
+    }
+
+    &.right{
+        margin-left: auto;
+    }
+}

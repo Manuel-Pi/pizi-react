@@ -1,0 +1,69 @@
+&.theme_alt{
+
+    &.fill{
+        table{
+            color: @color-white;
+
+            thead{
+                th{
+                    border-color: @color-main;
+                }
+            }
+
+            .head-cell{
+                color: @color-main;
+
+                svg{
+                    color: @color-light-grey;
+                }
+            }
+
+            tbody{
+                td{
+                    color: @color-white;
+                }
+
+                tr:nth-child(even) {
+                    td{
+                        color: @color-light-grey;
+                    }
+                }
+            }
+        }
+    }
+
+
+    thead{
+        th{
+            border-color: @color-main-alt;
+        }
+
+        .head-cell{
+            color: @color-main-alt;
+
+            svg{
+                color: @color-dark-grey;
+            }
+        }
+
+    }
+
+    tbody{
+        td{
+            color: @color-black;
+        }
+
+        tr + tr {
+            td{
+                border-top: 1px solid @color-dark-grey;
+                
+            }
+        }
+
+        tr:nth-child(even) {
+            td{
+                color: @color-light-black;
+            }
+        }
+    }
+}

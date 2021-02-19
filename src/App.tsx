@@ -28,7 +28,7 @@ export class App extends Component<AppProps, AppState> {
                     <h3>Heading 3</h3>
                     <h4>Heading 4</h4>
                     <h5>Heading 5</h5>
-                    <buton>Button 1</buton>
+                    <button>Button 1</button>
                 </div>
     }
 }

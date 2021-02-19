@@ -1,16 +1,37 @@
 @charset "UTF-8";
 /* Normalize */
 @import "../node_modules/normalize.css/normalize.css";
+@import (reference) "./styles/variables.less";
 
-@font-family: Arial, Helvetica, sans-serif;
-@color-dark: #222;
-@color-primary: peru;
-
-body{
-    background-color: @color-dark;
+html{
+    font-size: @font-size;
+    background-color: @background-dark;
     font-family: @font-family;
+    color: @color-white;
+    line-height: @line-height;
 }
 
-h1{
-    color: @color-primary;
+.hidden{
+    display: none !important;
 }
+
+:disabled{
+    opacity: 0.5;
+    cursor: not-allowed !important;
+    pointer-events: none;
+}
+
+*:focus{
+    outline: none;
+    box-shadow: none;
+    //box-shadow: 0px 0px 0px 4px cornflowerblue;
+}
+
+.use-focus{
+    *:focus{
+        box-shadow: 0px 0px 0px 4px cornflowerblue;
+    }
+}
+
+@import "./styles/headings.less";
+@import "./styles/paragraph.less";
