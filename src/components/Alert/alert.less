@@ -1,0 +1,104 @@
+@import (reference) '../../styles/variables.less';
+@import (reference) "../../styles/component-mixins.less";
+
+.pizi-alert{
+    .appearance();
+    color: @color-blue-dark;
+    padding: 0.6em;
+    padding-right: 2em;
+    border-radius: @border-radius;
+    margin-bottom: 2px;
+    position: relative;
+    transition: all 0.6s ease;
+    opacity: 1;
+    transform: scaleY(1);
+    .size();
+
+    button.simple{
+        color: @color-blue-dark;
+        position: absolute;
+        right: 4px;
+        top: 4px;
+        transition: all 0.4s ease;
+    }
+
+    &.close{
+        opacity: 0;
+        height: 0 !important;
+        padding-top: 0;
+        padding-bottom: 0;
+
+        button.simple{
+            top: 0;
+            opacity: 0;
+        }
+    }
+
+    &.fill{
+        background-color: @color-blue;
+        border-color: @color-blue;
+    }
+
+    &.success{
+        button{
+            color: @color-success-dark;
+        }
+    }
+
+    &.error{
+        button{
+            color: @color-error-dark;
+        }
+    }
+
+    &.warn{
+        button{
+            color: @color-warn-dark;
+        }
+    }
+
+    &.blue{
+        button{
+            color: @color-blue-dark;
+        }
+    }
+
+    &.border{
+        background-color: transparent;
+        //border-color: @color-blue;
+        color: @color-blue;
+
+        button{
+            color: @color-blue;
+        }
+
+        &.success{
+            button{
+                color: @color-success;
+            }
+        }
+    
+        &.error{  
+            button{
+                color: @color-error;
+            }
+        }
+    
+        &.warn{
+            button{
+                color: @color-warn;
+            }
+        }
+
+        &.blue{
+            button{
+                color: @color-blue;
+            }
+        }
+    }
+    
+}
+
+.pizi-alerts{
+    z-index: 1000;
+}

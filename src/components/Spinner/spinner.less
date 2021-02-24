@@ -1,0 +1,21 @@
+@import (reference) '../../styles/variables.less';
+@import (reference) "../../styles/component-mixins.less";
+
+.pizi-spinner{
+    .size();
+    
+    svg{
+        font-size: 1.4em;
+        color: @color-main;
+        animation: rotating 1.4s linear infinite;
+    }
+}
+
+@keyframes rotating {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }

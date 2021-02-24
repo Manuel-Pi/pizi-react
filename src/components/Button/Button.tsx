@@ -10,7 +10,6 @@ export interface ButtonProps extends ComponentProps{
 	iconLeft?: IconName
 	iconRight?: IconName
 	align?: 'right' | 'left'
-	onClick?: () => void
 }
 
 /**
@@ -30,7 +29,7 @@ export const Button: React.FC<ButtonProps & React.ButtonHTMLAttributes<HTMLButto
 			"icon": icon,
 			[align]: align
 		})}>
-		{iconLeft && <FontAwesomeIcon icon={iconLeft} className="left" />}
+		{iconLeft && <FontAwesomeIcon icon={iconLeft} className="left"/>}
 		{icon && <FontAwesomeIcon icon={icon} />}
 		{!icon && props.children}
 		{iconRight && <FontAwesomeIcon icon={iconRight} className="right" />}

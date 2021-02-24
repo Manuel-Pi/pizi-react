@@ -16,7 +16,7 @@ export const ButtonGroup: React.FC<ButtonGroupProps & React.HTMLAttributes<HTMLD
 	...props
 }) => {
 
-	return 	<div className={CreateClassName(GetComponentClassNames("pizi-button-group", props), {})}>
+	return 	<div {...props} className={CreateClassName(GetComponentClassNames("pizi-button-group", props), {})}>
 				{React.Children.map(props.children, child => {
 					if(React.isValidElement(child) && child.type === Button) {
 						return React.cloneElement(child, {

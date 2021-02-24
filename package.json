@@ -27,7 +27,8 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@fortawesome/react-fontawesome": "^0.1.14",
-    "normalize.css": "^8.0.1",
+    "animate.css": "^4.1.1",
+    "bootstrap": "^4.6.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0"
   },

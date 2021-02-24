@@ -47,3 +47,33 @@
         font-size: @font-large;
     }
 }
+
+@gradient-height: 8px;
+.gradient(){
+    content: "";
+    display: block;
+    width: 100%;
+    height: @gradient-height;
+    position: absolute;
+    z-index: 1;
+}
+
+.gradient-top(@color){
+    position: relative;
+
+    &:before{
+        .gradient();
+        background: linear-gradient(to top, @color 0%, rgba(0,0,0,0.2) 100%);
+        top: -@gradient-height;
+    }
+}
+
+.gradient-bottom(@color){
+    position: relative;
+
+    &:after{
+        .gradient();
+        background: linear-gradient(to bottom, @color 40%, transparent 100%);
+        bottom: -@gradient-height;
+    }
+}

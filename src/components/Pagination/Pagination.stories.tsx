@@ -40,6 +40,7 @@ const Template: Story<any> = ({...args}) => {
 
 	return <>
 				<Table header={header} data={paginatedData}></Table>
+				<div style={{height:"10px"}}></div>
 				<Pagination {...args} onChange={setData}/>
 			</>
 }

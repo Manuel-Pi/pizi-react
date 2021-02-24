@@ -1,6 +1,7 @@
 @charset "UTF-8";
 /* Normalize */
-@import "../node_modules/normalize.css/normalize.css";
+@import "../node_modules/bootstrap/dist/css/bootstrap-reboot.css";
+@import "../node_modules/animate.css/animate.css";
 @import (reference) "./styles/variables.less";
 
 html{
@@ -9,6 +10,10 @@ html{
     font-family: @font-family;
     color: @color-white;
     line-height: @line-height;
+}
+
+body{
+    color: @color-white;
 }
 
 .hidden{
@@ -32,6 +37,56 @@ html{
         box-shadow: 0px 0px 0px 4px cornflowerblue;
     }
 }
+
+.pizi-container{
+    padding: 16px;
+    overflow: auto;
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    &::-webkit-scrollbar-thumb{
+        background: transparent;
+    }
+
+    h1, h2, h3, h4, h5, h6{
+        margin-top: 0px;
+    }
+}
+
+// mixin to iterate over colors and create CSS class for each one
+.make-color-classes(@i: length(@colors)) when (@i > 0) {
+    .make-color-classes(@i - 1);
+    @color: extract(@colors, @i);
+    @colorVar: "color-@{color}";
+    @colorVarDark: "color-@{color}-dark";
+    .@{color} {
+        color: @@colorVar;  
+    }
+    [class^="pizi-"].@{color}.simple{
+        color: @@colorVar;  
+    }
+    [class^="pizi-"].@{color}.fill{
+        background-color: @@colorVar;
+        border-color: @@colorVar;
+        color: @@colorVarDark;
+
+        &:not(:not(button)):active{
+            background-color: @@colorVarDark;
+            border-color: @@colorVarDark;
+            color: @@colorVar;
+        }
+    }
+    [class^="pizi-"].@{color}.border{
+        border-color: @@colorVar;
+        color: @@colorVar;  
+
+        &:not(:not(button)):active{
+            background-color: @@colorVar;
+            color: @@colorVarDark;
+        }
+    }
+}
+.make-color-classes();
 
 @import "./styles/headings.less";
 @import "./styles/paragraph.less";
