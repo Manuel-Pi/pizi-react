@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './modal.less';
-import { ComponentProps, GetComponentClassNames } from '../PiziComponent/PiziComponent';
+import { ComponentProps, GetAltColor, GetComponentClassNames } from '../PiziComponent/PiziComponent';
 import { CreateClassName } from '../../utils/ClassNameHelper';
 import { Button } from '../Button/Button';
 import { Heading } from '../Heading/Heading';
@@ -9,7 +9,7 @@ import { ButtonGroup } from '../ButtonGroup/ButtonGroup';
 export interface ModalProps extends ComponentProps{
 	type?: 'info' | 'confirm' | 'custom'
 	open?: boolean
-	onClose?: (closeActionName: string) => void
+	onClose?: (closeActionName: string) => void | boolean
 	header?: string | React.Component
 	closeButton?: boolean
 	actions?: React.ReactElement[]
@@ -29,28 +29,24 @@ export const Modal: React.FC<ModalProps & React.HTMLAttributes<HTMLDivElement>> 
 	...props
 }) => {
 
-	const [isOpen, setOpen] = useState(open);
+	//const [isOpen, setOpen] = useState(open);
 	const [isClosed, seClosed] = useState(!open);
-	const [closeAction, setCloseAction] = useState(null);
 
 	useEffect(() => {
-		if(isOpen) {
+		if(open) {
 			document.body.classList.add("body-modal")
-			setOpen(true)
+			//setOpen(true)
 			seClosed(false)
-		} else {
+		} else if(isClosed){
 			document.body.classList.remove("body-modal")
 		}
-	}, [isOpen, isClosed])
+	}, [open, isClosed])
 
-	useEffect(() => {
-		setOpen(open)
-	}, [open])	
+
 
 	const closeModal = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
 		if(event.target instanceof HTMLButtonElement){
-			setOpen(false)
-			setCloseAction((event.target as HTMLButtonElement).name)
+			onClose((event.target as HTMLButtonElement).name)
 		}
 	}
 
@@ -58,10 +54,10 @@ export const Modal: React.FC<ModalProps & React.HTMLAttributes<HTMLDivElement>> 
 
 	if(type !== "custom"){
 		if(type && (type !== "info" || !closeButton)){
-			modalActions.push(<Button key="confirm" size="large" theme={props.theme === "alt" ? "default" : "alt"} name="confirm">Ok</Button>)
+			modalActions.push(<Button key="confirm" size="large" color={props.appearance === "fill" && GetAltColor(props.color) || props.color} name="confirm">Ok</Button>)
 		}
 		if(type === 'confirm'){
-			modalActions.push(<Button key="cancel" size="large" theme={props.theme === "alt" ? "default" : "alt"} name="cancel" appearance="border">Cancel</Button>)
+			modalActions.push(<Button key="cancel" size="large" color={props.color === "secondary" ? "main" : "secondary"} name="cancel" appearance="border">Cancel</Button>)
 		}
 		modalActions.push(...actions)
 	} else {
@@ -72,33 +68,32 @@ export const Modal: React.FC<ModalProps & React.HTMLAttributes<HTMLDivElement>> 
 							"hidden": isClosed
 							})}>
 				<div className={CreateClassName(GetComponentClassNames("pizi-modal-container animate__animated", props), {
-									"animate__bounceIn": isOpen,
-									"animate__bounceOut": !isOpen,
+									"animate__bounceIn": open,
+									"animate__bounceOut": !open,
 									"close-button": closeButton
 								})} 
 					onAnimationEnd={e => { 
-						if(isOpen) return
-						onClose(closeAction)
-						seClosed(!isOpen) 
+						if(open) return
+						seClosed(true) 
 					}}>
 					{
-						header && 	<header>
+						header && 	<header className="border-alt-light">
 									{
-										typeof header === "string" ? <Heading tag="h1" theme={props.theme === "alt" ? "default" : "alt"}>{header}</Heading> : header 
+										typeof header === "string" ? <Heading tag="h1" className="alt">{header}</Heading> : header 
 									}
 									</header>
 					}
-					<div className="pizi-container">
+					<div className={"pizi-container alt"}>
 						{children}
 					</div>
 					{
-						!!modalActions.length && 	<footer>
-												<ButtonGroup onClick={closeModal}>
-													{modalActions}
-												</ButtonGroup>
-											</footer>
+						!!modalActions.length && 	<footer className="border-alt-light">
+														<ButtonGroup onClick={closeModal} color={props.color}>
+															{modalActions}
+														</ButtonGroup>
+													</footer>
 					}
-					{closeButton && <Button name="close-cross" icon="times" align="right" theme={"alt"} appearance={"simple"} onClick={closeModal}/>}
+					{closeButton && <Button name="close-cross" icon="times" align="right" className="alt" appearance={"simple"} onClick={closeModal}/>}
 				</div>
 			</div>
 };

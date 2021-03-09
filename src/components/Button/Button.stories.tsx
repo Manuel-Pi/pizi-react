@@ -6,14 +6,14 @@ import { Button, ButtonProps } from './Button'
 import { defaultProps } from '../PiziComponent/PiziComponent';
 
 export default {
-  title: 'Button',
+  title: 'Controls/Button',
   component: Button,
   argTypes: {
     display: {
       defaultValue: defaultProps.display
     },
-    theme: {
-      defaultValue: defaultProps.theme
+    color: {
+      defaultValue: defaultProps.color
     },
     appearance: {
       defaultValue: defaultProps.appearance

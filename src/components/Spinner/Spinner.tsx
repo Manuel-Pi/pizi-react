@@ -1,10 +1,10 @@
 import React from 'react';
 import './spinner.less';
-import { ComponentProps, GetComponentClassNames } from '../PiziComponent/PiziComponent';
+import { Appeareance, ComponentProps, GetComponentClassNames } from '../PiziComponent/PiziComponent';
 import { CreateClassName } from '../../utils/ClassNameHelper';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export interface SpinnerProps extends ComponentProps{
+export interface SpinnerProps extends Omit<ComponentProps, "appearance">{
 	type: 'spinner' | 'circle-notch' | 'sync' | 'sync-alt' | 'cog' | 'fan' | 'compact-disc'
 }
 
@@ -15,7 +15,7 @@ export const Spinner: React.FC<SpinnerProps & React.HTMLAttributes<HTMLDivElemen
 	type = "spinner",
 	...props
 }) => {
-	return <div className={CreateClassName(GetComponentClassNames("pizi-spinner", props))}>
-				<FontAwesomeIcon icon={type}/>
+	return <div className={CreateClassName(GetComponentClassNames("pizi-spinner", {...props, appearance: null}))}>
+				<FontAwesomeIcon icon={type} className={props.color}/>
 	        </div>
 };

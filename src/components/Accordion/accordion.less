@@ -1,0 +1,85 @@
+@import (reference) '../../styles/variables.less';
+@import (reference) "../../styles/component-mixins.less";
+
+@icon-width: 20px;
+@icon-height: 3px;
+.pizi-accordion{
+
+    ul{
+        margin: 0;
+        padding: 0;
+    }
+
+    
+    li{
+        list-style: none;
+
+        .pizi-heading{
+            margin-bottom: 4px;
+            padding: 0;
+            border: none;
+            position: relative;
+
+            button{
+                width: 100%;
+                font-size: 0.6em;
+                padding: 0.2em 0.6em;
+            }
+   
+            i{
+                font-style: normal;
+                position: absolute;
+                top: calc(50% ~"-" @icon-width / 2 ~"-" @icon-height / 2);
+                right: 16px;
+                height: @icon-width;
+                width: @icon-width;
+                transition: all 0.3s linear;
+
+                &:before, &:after{
+                    content: "";
+                    width: 100%;
+                    height: @icon-height;
+                    position: absolute;
+                    top: 50%;
+                    transition: all 0.2s linear;
+                }
+
+                &:after{
+                    transform: rotateZ(90deg);
+                    transform-origin: 50% 50%;
+                }
+            }
+        }
+
+        &.open{
+            i{
+                transform-origin: 50% calc(50% ~"+" @icon-height / 2);
+                transform: rotateZ(180deg);
+
+                &:after{
+                    transform: rotateZ(360deg);
+                }
+            }
+        }
+
+        .item-content{
+            height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+
+            &.open{
+                height: auto;
+            }
+        }
+
+        &:not(.open) .item-content{
+            height: 0 !important;
+        }
+    }
+}
+
+.pizi-accordion-item{
+    font-size: 1em;
+    overflow: auto;
+    padding: 0 0.6em;
+}

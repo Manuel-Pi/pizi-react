@@ -4,23 +4,26 @@
 .pizi-button{
     display: flex;
     align-items: center;
-    background-color: @color-main;
+    background-color: transparent;
     font-family: @font-family;
     border: @border;
     border-radius: @border-radius;
     font-size: @font-medium;
     padding: 0.3em 0.6em;
-    //opacity: 0.8;
     cursor: pointer;
-    color: @color-secondary;
     letter-spacing: @letter-spacing-medium;
-    @import 'button-alt';
 
-    .appearance();
     .size();
 
-    &.small{
-        //padding: 0.2em 0.4em;
+    &:active:not(.no-active){
+        .background-colors();
+
+        &.fill, &.icon{
+            filter: brightness(0.6);
+        }
+        &.icon{
+            background-color: transparent;
+        }
     }
 
     &.icon{

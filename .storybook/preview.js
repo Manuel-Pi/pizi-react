@@ -1,14 +1,20 @@
 
 import "../src/main.less"
 import * as Icons from '@fortawesome/free-solid-svg-icons'
-import { library } from '@fortawesome/fontawesome-svg-core';
+import * as BrandIcons from '@fortawesome/free-brands-svg-icons'
+import { library } from '@fortawesome/fontawesome-svg-core'
 
 const iconList = Object
   .keys(Icons)
   .filter(key => key !== "fas" && key !== "prefix" )
   .map(icon => Icons[icon])
 
-library.add(...iconList)
+  const brandIconList = Object
+  .keys(BrandIcons)
+  .filter(key => key !== "fab" && key !== "prefix" )
+  .map(icon => BrandIcons[icon])
+
+library.add(...iconList, ...brandIconList)
 
 
 export const parameters = {

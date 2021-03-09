@@ -7,14 +7,14 @@ import { Table } from '../Table/Table';
 import { useState } from '@storybook/addons';
 
 export default {
-	title: 'Pagination',
+	title: 'Controls/Pagination',
 	component: Pagination,
 	argTypes: {
 		display: {
 		  defaultValue: defaultProps.display
 		},
-		theme: {
-		  defaultValue: defaultProps.theme
+		color: {
+		  defaultValue: defaultProps.color
 		},
 		appearance: {
 		  defaultValue: defaultProps.appearance

@@ -2,11 +2,8 @@
 @import (reference) "../../styles/component-mixins.less";
 
 .pizi-table{
+    border: @border;
     border-radius: @border-radius;
-    padding: 8px;
-
-    @import 'table-alt';
-    .appearance();
 
     &.fill{
         table{
@@ -14,12 +11,11 @@
 
             thead{
                 th{
-                    border-color: @color-black;
+                    border-color: @color-secondary;
                 }
             }
 
             .head-cell{
-                color: @color-black;
 
                 svg{
                     color: @color-light-black;
@@ -28,7 +24,7 @@
 
             tr:nth-child(even) {
                 td{
-                    color: @color-light-black;
+                    //color: @color-light-black;
                 }
             }
         }
@@ -37,7 +33,6 @@
     table{
         border-collapse: collapse;
         width: 100%;
-        color: @color-white;
     }
 
     thead{
@@ -78,13 +73,13 @@
 
         tr + tr {
             td{
-                border-top: 1px solid @color-dark-grey;
+               // border-top: 1px solid @color-dark-grey;
             }
         }
 
         tr:nth-child(even) {
             td{
-                color: @color-light-grey;
+                background-color: rgba(0,0,0,0.1);
             }
         }
     }

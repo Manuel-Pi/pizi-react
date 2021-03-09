@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useState, useCallback} from 'react';
 import { CreateClassName } from '../../utils/ClassNameHelper';
 import { Button } from '../Button/Button';
 import { Pagination } from '../Pagination/Pagination';
-import { ComponentProps, GetComponentClassNames, defaultProps } from '../PiziComponent/PiziComponent';
+import { ComponentProps, GetComponentClassNames, defaultProps, GetAltColor } from '../PiziComponent/PiziComponent';
 import './table.less';
 
 export interface TableOrder {
@@ -73,18 +73,19 @@ export const Table: React.FC<TableProps> = ({
 
     useEffect(() => {
         orderTable(order)
-    }, [data, props.theme, props.appearance]);
+    }, [data, props.color, props.appearance]);
 
 	return  <div className={CreateClassName(GetComponentClassNames('pizi-table', props))}>
                 <table> 
                     <thead>
                         <tr>
                             {
-                                header.map((item) =>  <th key={item}>
-                                                        <Button className={CreateClassName("head-cell", {
-                                                                                "order": order.direction && order.header === item
+                                header.map((item) =>  <th className={props.appearance === "border" && "border"} key={item} color={props.color}>
+                                                        <Button {...props}
+                                                        className={CreateClassName("head-cell", {
+                                                                                order: order.direction && order.header === item
                                                                             })} 
-                                                        {...props}
+                                                        color={props.appearance === "fill" && GetAltColor(props.color) || props.color}
                                                         onClick={() => orderTable((order && order.direction === "down" && order.header === item) ? {direction: "up", header: item} : {direction: "down", header: item})}
                                                         appearance="simple"
                                                         iconRight={order.direction === "down" ? "sort-amount-down-alt" : "sort-amount-up"}>

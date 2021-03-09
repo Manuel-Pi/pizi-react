@@ -3,6 +3,7 @@
 @import "../node_modules/bootstrap/dist/css/bootstrap-reboot.css";
 @import "../node_modules/animate.css/animate.css";
 @import (reference) "./styles/variables.less";
+@import (reference) "./styles/component-mixins.less";
 
 html{
     font-size: @font-size;
@@ -38,55 +39,38 @@ body{
     }
 }
 
+/* Let's get this party started */
+::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 4px rgba(0,0,0,0.3); 
+    border-radius: @border-radius;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #111; 
+    color: red;
+    box-shadow: inset 0 0 40px @color-secondary; 
+}
+
 .pizi-container{
+    border: @border;
     padding: 16px;
     overflow: auto;
-    &::-webkit-scrollbar-track {
-        background: transparent;
-    }
-    &::-webkit-scrollbar-thumb{
-        background: transparent;
-    }
+    color: @color-light-grey;
 
     h1, h2, h3, h4, h5, h6{
         margin-top: 0px;
     }
 }
 
-// mixin to iterate over colors and create CSS class for each one
-.make-color-classes(@i: length(@colors)) when (@i > 0) {
-    .make-color-classes(@i - 1);
-    @color: extract(@colors, @i);
-    @colorVar: "color-@{color}";
-    @colorVarDark: "color-@{color}-dark";
-    .@{color} {
-        color: @@colorVar;  
-    }
-    [class^="pizi-"].@{color}.simple{
-        color: @@colorVar;  
-    }
-    [class^="pizi-"].@{color}.fill{
-        background-color: @@colorVar;
-        border-color: @@colorVar;
-        color: @@colorVarDark;
-
-        &:not(:not(button)):active{
-            background-color: @@colorVarDark;
-            border-color: @@colorVarDark;
-            color: @@colorVar;
-        }
-    }
-    [class^="pizi-"].@{color}.border{
-        border-color: @@colorVar;
-        color: @@colorVar;  
-
-        &:not(:not(button)):active{
-            background-color: @@colorVar;
-            color: @@colorVarDark;
-        }
-    }
-}
 .make-color-classes();
+
 
 @import "./styles/headings.less";
 @import "./styles/paragraph.less";

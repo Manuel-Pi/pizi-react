@@ -7,20 +7,17 @@ import { Button } from '../Button/Button';
 import { defaultProps } from '../PiziComponent/PiziComponent';
 
 export default {
-	title: 'Button Group',
+	title: 'Controls/Button Group',
 	component: ButtonGroup,
 	argTypes: {
 		display: {
 		  defaultValue: defaultProps.display
 		},
-		theme: {
-		  defaultValue: defaultProps.theme
+		color: {
+		  defaultValue: defaultProps.color
 		},
 		appearance: {
 		  defaultValue: defaultProps.appearance
-		},
-		buttonAppearance: {
-
 		},
 		size: {
 		  defaultValue: defaultProps.size

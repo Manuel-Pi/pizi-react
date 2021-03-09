@@ -1,20 +1,22 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/react/types-6-0'
 import { defaultProps } from '../PiziComponent/PiziComponent';
 import { Modal } from './Modal';
 import { Heading } from '../Heading/Heading';
+import { action } from '@storybook/addon-actions';
 import { Button } from '../Button/Button';
+import { useArgs } from '@storybook/client-api';
 
 export default {
-	title: 'Modal',
+	title: 'Containers/Modal',
 	component: Modal,
 	argTypes: {
 		display: {
 		  defaultValue: defaultProps.display
 		},
-		theme: {
-		  defaultValue: defaultProps.theme
+		color: {
+		  defaultValue: defaultProps.color
 		},
 		appearance: {
 		  defaultValue: defaultProps.appearance
@@ -40,19 +42,19 @@ const Paragraphe2 = [
 <p key={12}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut accumsan lorem, nec laoreet leo. Nunc pretium eu metus a placerat. Vivamus et sollicitudin sapien, in gravida dolor. Vivamus efficitur a ipsum scelerisque pulvinar. Donec ornare elit at arcu sollicitudin commodo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis consectetur consequat ex a finibus. Aenean feugiat viverra felis, sit amet condimentum metus accumsan at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Maecenas quis odio sagittis, sodales orci quis, dapibus sem. Nulla facilisi. Donec risus ligula, pharetra id ligula vitae, varius condimentum turpis. Ut feugiat molestie rhoncus.</p>]
 
 const Template: Story<any> = ({...args}) => {
-	const [modalOpen, setModalOpen] = useState(true);
+	const [{ open }, updateArgs] = useArgs();
 
 	return  <>
 				<div>
 					<h1>Fake content</h1>
-					<Button onClick={() => setModalOpen(true)}>Open modal</Button>
+					<Button onClick={() => updateArgs({open: true})}>Open modal</Button>
 					{Paragraphe2}	
-				
-					
 				</div>
-				<Modal {...args} open={modalOpen} onClose={(name) => {
-					setModalOpen(false)
-					alert("Closed by: " + name)
+				<Modal {...args}  onClose={(name) => {
+						action("Click on: ")(name)
+						if(name === "plus") return false
+						updateArgs({open: false})
+						action("Closed by: ")(name)
 					}}>	
 				</Modal>
 			</>
@@ -63,9 +65,12 @@ export const Alert = Template.bind({});
 Alert.args = {
 	open: true,
 	children: [
-		<Heading tag="h2" theme="alt">Modal Alert</Heading>,
+		<Heading tag="h2" className="alt">Modal Alert</Heading>,
 		<p key={0}> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut accumsan lorem, nec laoreet leo. Nunc pretium eu metus a placerat. Vivamus et sollicitudin sapien, in gravida dolor. Vivamus efficitur a ipsum scelerisque pulvinar. Donec ornare elit at arcu sollicitudin commodo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis consectetur consequat ex a finibus. Aenean feugiat viverra felis, sit amet condimentum metus accumsan at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Maecenas quis odio sagittis, sodales orci quis, dapibus sem. Nulla facilisi. Donec risus ligula, pharetra id ligula vitae, varius condimentum turpis. Ut feugiat molestie rhoncus.</p>
 	], 
+	onClose:{
+		action: 'closed'
+	}
 };
 
 export const AlertClose = Template.bind({});
@@ -73,7 +78,7 @@ AlertClose.args = {
 	closeButton: true,
 	open: true,
 	children: [
-		<Heading tag="h2" theme="alt">Modal Alert</Heading>,
+		<Heading tag="h2" className="alt">Modal Alert</Heading>,
 		<p key={0}> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut accumsan lorem, nec laoreet leo. Nunc pretium eu metus a placerat. Vivamus et sollicitudin sapien, in gravida dolor. Vivamus efficitur a ipsum scelerisque pulvinar. Donec ornare elit at arcu sollicitudin commodo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis consectetur consequat ex a finibus. Aenean feugiat viverra felis, sit amet condimentum metus accumsan at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Maecenas quis odio sagittis, sodales orci quis, dapibus sem. Nulla facilisi. Donec risus ligula, pharetra id ligula vitae, varius condimentum turpis. Ut feugiat molestie rhoncus.</p>
 	], 
 };
@@ -102,8 +107,8 @@ Custom.args = {
 	open: true,
 	children: Paragraphe,
 	actions: [
-		<Button theme="alt" icon="plus" name="plus"></Button>,
-		<Button theme="alt" icon="minus" name="minus"></Button>,
-		<Button theme="alt" iconRight="globe" name="globe">Close modal</Button>
+		<Button icon="plus" name="plus" className="alt"></Button>,
+		<Button icon="minus" name="minus" className="alt"></Button>,
+		<Button iconRight="globe" name="globe" className="alt">Close modal</Button>
 	]
 };

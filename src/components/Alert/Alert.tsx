@@ -1,12 +1,11 @@
 import React, { ReactElement, useEffect, useRef, useState } from 'react';
 import './alert.less';
-import { Appeareance, ComponentProps, GetComponentClassNames } from '../PiziComponent/PiziComponent';
+import { Appeareance, ComponentProps, GetAltColor, GetComponentClassNames } from '../PiziComponent/PiziComponent';
 import { CreateClassName } from '../../utils/ClassNameHelper';
 import { ButtonGroup } from '../ButtonGroup/ButtonGroup';
 import { Button } from '../Button/Button';
 
 export interface AlertProps extends ComponentProps{
-	type?: 'success' | 'error' | 'warn' | 'blue'
 	timeout?: number
 	content?: any
 }
@@ -15,8 +14,8 @@ export interface AlertProps extends ComponentProps{
  * Alert UI component
  */
 export const Alert: React.FC<AlertProps & React.HTMLAttributes<HTMLDivElement>> = ({
-	type = 'blue',
 	timeout = 4000,
+	color = 'blue',
 	content,
 	...props
 }) => {
@@ -32,15 +31,17 @@ export const Alert: React.FC<AlertProps & React.HTMLAttributes<HTMLDivElement>> 
 	}, [])
 
 	return closed ? null : 
-			<div className={CreateClassName(GetComponentClassNames("pizi-alert", props), {
-						[type]: type,
+			<div className={CreateClassName(GetComponentClassNames("pizi-alert", {...props, color}), {
 						"animate__animated": true,
 						"close": !open
 					})} 
 					onTransitionEnd={() => setClosed(true)}
 					ref={alertRef}>
 				{content || props.children}
-				<Button icon="times" appearance="simple" onClick={() => setOpen(false)}/>
+				<Button icon="times" 
+						appearance="simple" 
+						onClick={() => setOpen(false)}
+						color={props.appearance === "fill" ? GetAltColor(color) : color}/>
 	        </div>
 }
 

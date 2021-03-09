@@ -1,0 +1,17 @@
+@import (reference) '../../styles/variables.less';
+@import (reference) "../../styles/component-mixins.less";
+
+.pizi-input{
+    display: inline-block;
+
+    .pizi-input__error{
+        font-size: 0.8em;
+        display: none;
+    }
+
+    &.error{
+        .pizi-input__error{
+           display: block;
+        }
+    }
+}

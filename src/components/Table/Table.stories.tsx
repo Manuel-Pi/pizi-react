@@ -12,8 +12,8 @@ export default {
 		display: {
 		  defaultValue: defaultProps.display
 		},
-		theme: {
-		  defaultValue: defaultProps.theme
+		color: {
+		  defaultValue: defaultProps.color
 		},
 		appearance: {
 		  defaultValue: 'simple'

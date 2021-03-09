@@ -11,11 +11,8 @@ export default {
 		display: {
 		  defaultValue: defaultProps.display
 		},
-		theme: {
-		  defaultValue: defaultProps.theme
-		},
-		appearance: {
-		  defaultValue: defaultProps.appearance
+		color: {
+		  defaultValue: defaultProps.color
 		}
 	}
 } as Meta;
