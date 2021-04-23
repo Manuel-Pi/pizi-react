@@ -24,4 +24,5 @@ const Template: Story<any> = ({...args}) => <TextInput {...args}></TextInput>
 export const Default = Template.bind({});
 Default.args = {
 	label:"Label du text input",
+	placeholder: "type value here ..."
 };
