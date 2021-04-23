@@ -4,6 +4,10 @@ import { Button } from '../Button/Button';
 import { Pagination } from '../Pagination/Pagination';
 import { ComponentProps, GetComponentClassNames, defaultProps, GetAltColor } from '../PiziComponent/PiziComponent';
 import './table.less';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import {faSortAmountDownAlt} from '@fortawesome/free-solid-svg-icons/faSortAmountDownAlt';
+import {faSortAmountUp} from '@fortawesome/free-solid-svg-icons/faSortAmountUp';
+library.add(faSortAmountDownAlt, faSortAmountUp);
 
 export interface TableOrder {
     direction: 'up' | 'down'
