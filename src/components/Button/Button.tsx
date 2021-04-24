@@ -20,15 +20,14 @@ export const Button: React.FC<ButtonProps & React.ButtonHTMLAttributes<HTMLButto
 	iconLeft,
 	iconRight,
 	align,
-	color = defaultProps.color,
-	appearance = defaultProps.appearance,
-	...props
+	...other
 }) => {
+	const props = {...defaultProps, ...other};
 	return <button
 		type="button"
 		{...props}
-		className={CreateClassName(GetComponentClassNames("pizi-button", {...props, color, appearance}), {
-			"main": !color,
+		className={CreateClassName(GetComponentClassNames("pizi-button", {...props}), {
+			"main": !props.color,
 			"icon": icon,
 			[align]: align
 		})}>

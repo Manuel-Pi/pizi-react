@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useState, useCallback} from 'react';
 import { CreateClassName } from '../../utils/ClassNameHelper';
 import { Button } from '../Button/Button';
 import { Pagination } from '../Pagination/Pagination';
-import { ComponentProps, GetComponentClassNames, defaultProps, GetAltColor, SetDefaultProps } from '../PiziComponent/PiziComponent';
+import { ComponentProps, GetComponentClassNames, defaultProps, GetAltColor } from '../PiziComponent/PiziComponent';
 import './table.less';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {faSortAmountDownAlt} from '@fortawesome/free-solid-svg-icons/faSortAmountDownAlt';
@@ -27,9 +27,9 @@ export const Table: React.FC<TableProps> = ({
     header,
     data,
     defaultOrder =  {direction: null, header: null},
-	...props
+	...other
 }) => {
-    SetDefaultProps(props);
+    const props = {...defaultProps, ...other};
     const orderedData = [...data];
     const [order, setOrder] = useState(defaultOrder);
     const [currentData, setData] = useState(orderedData);

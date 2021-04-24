@@ -44,7 +44,3 @@ export const GetAltColor = (color: string) => {
 		return "secondary"
 	}
 }
-
-export const SetDefaultProps = (props: any) => {
-	props = {...defaultProps, ...props}; 
-}
