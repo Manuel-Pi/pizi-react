@@ -36,8 +36,8 @@ export const Table: React.FC<TableProps> = ({
    
     const orderTable = useCallback((order: TableOrder) => {
         if(order.direction) orderedData.sort((a, b) => {
-            const itemA = a[header.indexOf(order.header)];
-            const itemB = b[header.indexOf(order.header)];
+            const itemA = a[header.indexOf(order.header)].trim().toLowerCase();
+            const itemB = b[header.indexOf(order.header)].trim().toLowerCase();
             return itemA > itemB ? 1 : itemA < itemB ? -1 : 0
         })
         if(order.direction === "up") orderedData.reverse();
