@@ -46,9 +46,5 @@ export const GetAltColor = (color: string) => {
 }
 
 export const SetDefaultProps = (props: any) => {
-	Object.keys(props).forEach(prop => {
-
-		if(props[prop] !== undefined && defaultProps[prop] !== undefined) props[prop] = defaultProps[prop];
-	});
-	props = {...props, ...defaultProps}; 
+	props = {...defaultProps, ...props}; 
 }
