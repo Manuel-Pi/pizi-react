@@ -20,8 +20,8 @@ export const Button: React.FC<ButtonProps & React.ButtonHTMLAttributes<HTMLButto
 	iconLeft,
 	iconRight,
 	align,
-	color,
-	appearance,
+	color = defaultProps.color,
+	appearance = defaultProps.appearance,
 	...props
 }) => {
 	return <button
