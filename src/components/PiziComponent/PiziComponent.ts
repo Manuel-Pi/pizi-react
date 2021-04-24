@@ -12,7 +12,7 @@ export interface ComponentProps extends React.HTMLAttributes<HTMLElement> {
 	color?: Color
 }
 
-export const defaultProps: ComponentProps = {
+export const defaultProps: any = {
 	display: true,
 	appearance: 'fill',
 	size: 'medium',
@@ -43,4 +43,12 @@ export const GetAltColor = (color: string) => {
 		default:
 		return "secondary"
 	}
+}
+
+export const SetDefaultProps = (props: any) => {
+	Object.keys(props).forEach(prop => {
+
+		if(props[prop] !== undefined && defaultProps[prop] !== undefined) props[prop] = defaultProps[prop];
+	});
+	props = {...props, ...defaultProps}; 
 }
