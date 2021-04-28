@@ -18,6 +18,8 @@ export interface TableProps extends Omit<ComponentProps, 'size'>{
     header: string[]
     data: string[][]
     defaultOrder?: TableOrder
+    selectable?: boolean
+    onSelected?: (selection: string[]) => void
 }
 
 /**
@@ -27,6 +29,8 @@ export const Table: React.FC<TableProps> = ({
     header,
     data,
     defaultOrder =  {direction: null, header: null},
+    selectable = true,
+    onSelected = () => {},
 	...other
 }) => {
     const props = {...defaultProps, ...other};
@@ -34,6 +38,7 @@ export const Table: React.FC<TableProps> = ({
     const [order, setOrder] = useState(defaultOrder);
     const [currentData, setData] = useState(orderedData);
     const [pagination, setPagination] = useState(null);
+    const [selected, setSelected] = useState(null);
    
     const orderTable = useCallback((order: TableOrder) => {
         if(order.direction) orderedData.sort((a, b) => {
@@ -56,6 +61,12 @@ export const Table: React.FC<TableProps> = ({
         }
 
     }, [order, pagination, orderedData])
+
+    const clickHandler = selectable ? (line: string[]) => {
+        const selection = line !== selected ? line : null
+        setSelected(selection)
+        onSelected(selection)
+    } : undefined
 
     useEffect(() => {
         orderTable(order)
@@ -102,11 +113,14 @@ export const Table: React.FC<TableProps> = ({
                     </thead>
                     <tbody>
                             {
-                                currentData.map(line => <tr>
-                                                    {
-                                                        line.map(data => <td>{data}</td>)
-                                                    }
-                                                </tr>)
+                                currentData.map(line => <tr onClick={selectable ? (e) => clickHandler(line) : undefined}
+                                                            className={CreateClassName("", {
+                                                                selected: selected === line
+                                                            })}>
+                                                        {
+                                                            line.map(data => <td>{data}</td>)
+                                                        }
+                                                        </tr>)
                             }
                     </tbody>
                 </table>
