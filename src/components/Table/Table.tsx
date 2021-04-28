@@ -98,7 +98,7 @@ export const Table: React.FC<TableProps> = ({
                             {
                                 header.map((item) =>  <th className={props.appearance === "border" && "border"} key={item} color={props.color}>
                                                         <Button {...props}
-                                                        className={CreateClassName("head-cell", {
+                                                        className={CreateClassName("head-cell no-active", {
                                                                                 order: order.direction && order.header === item
                                                                             })} 
                                                         color={props.appearance === "fill" && GetAltColor(props.color) || props.color}
