@@ -64,7 +64,7 @@ export const Table: React.FC<TableProps> = ({
 
     const clickHandler = selectable ? (line: string[]) => {
         const selection = line !== selected ? line : null
-        setSelected(selection)
+        setSelected(selection.toString())
         onSelected(selection)
     } : undefined
 
@@ -115,7 +115,7 @@ export const Table: React.FC<TableProps> = ({
                             {
                                 currentData.map(line => <tr onClick={selectable ? (e) => clickHandler(line) : undefined}
                                                             className={CreateClassName("", {
-                                                                selected: selected === line
+                                                                selected: selected === line.toString()
                                                             })}>
                                                         {
                                                             line.map(data => <td>{data}</td>)
