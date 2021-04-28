@@ -63,7 +63,7 @@ export const Table: React.FC<TableProps> = ({
     }, [order, pagination, orderedData])
 
     const clickHandler = selectable ? (line: string[]) => {
-        const selection = line !== selected ? line : null
+        const selection = line.toString() !== selected ? line : null
         setSelected(selection.toString())
         onSelected(selection)
     } : undefined
