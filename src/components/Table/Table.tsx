@@ -64,7 +64,7 @@ export const Table: React.FC<TableProps> = ({
 
     const clickHandler = selectable ? (line: string[]) => {
         const selection = line.toString() !== selected ? line : null
-        setSelected(selection.toString())
+        setSelected(selection && selection.toString())
         onSelected(selection)
     } : undefined
 
