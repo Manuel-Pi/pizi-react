@@ -92,38 +92,40 @@ export const Table: React.FC<TableProps> = ({
     }, [data, props.color, props.appearance]);
 
 	return  <div className={CreateClassName(GetComponentClassNames('pizi-table', props))}>
-                <table> 
-                    <thead>
-                        <tr>
-                            {
-                                header.map((item) =>  <th className={props.appearance === "border" && "border"} key={item} color={props.color}>
-                                                        <Button {...props}
-                                                        className={CreateClassName("head-cell no-active", {
-                                                                                order: order.direction && order.header === item
-                                                                            })} 
-                                                        color={props.appearance === "fill" && GetAltColor(props.color) || props.color}
-                                                        onClick={() => orderTable((order && order.direction === "down" && order.header === item) ? {direction: "up", header: item} : {direction: "down", header: item})}
-                                                        appearance="simple"
-                                                        iconRight={order.direction === "down" ? "sort-amount-down-alt" : "sort-amount-up"}>
-                                                            {item}
-                                                        </Button>
-                                                    </th>)
-                            }
-                        </tr>
-                    </thead>
-                    <tbody>
-                            {
-                                currentData.map(line => <tr onClick={selectable ? (e) => clickHandler(line) : undefined}
-                                                            className={CreateClassName("", {
-                                                                selected: selected === line.toString()
-                                                            })}>
-                                                        {
-                                                            line.map(data => <td>{data}</td>)
-                                                        }
-                                                        </tr>)
-                            }
-                    </tbody>
-                </table>
+                <div className="pizi-table-container">
+                    <table> 
+                        <thead>
+                            <tr>
+                                {
+                                    header.map((item) =>  <th className={props.appearance === "border" && "border"} key={item} color={props.color}>
+                                                            <Button {...props}
+                                                            className={CreateClassName("head-cell no-active", {
+                                                                                    order: order.direction && order.header === item
+                                                                                })} 
+                                                            color={props.appearance === "fill" && GetAltColor(props.color) || props.color}
+                                                            onClick={() => orderTable((order && order.direction === "down" && order.header === item) ? {direction: "up", header: item} : {direction: "down", header: item})}
+                                                            appearance="simple"
+                                                            iconRight={order.direction === "down" ? "sort-amount-down-alt" : "sort-amount-up"}>
+                                                                {item}
+                                                            </Button>
+                                                        </th>)
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                                {
+                                    currentData.map(line => <tr onClick={selectable ? (e) => clickHandler(line) : undefined}
+                                                                className={CreateClassName("", {
+                                                                    selected: selected === line.toString()
+                                                                })}>
+                                                            {
+                                                                line.map(data => <td>{data}</td>)
+                                                            }
+                                                            </tr>)
+                                }
+                        </tbody>
+                    </table>
+                </div>
                 {pagination}
             </div>
 };
