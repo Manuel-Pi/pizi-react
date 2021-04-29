@@ -97,7 +97,7 @@ export const Table: React.FC<TableProps> = ({
                         <thead>
                             <tr>
                                 {
-                                    header.map((item) =>  <th className={props.appearance === "border" && "border"} key={item} color={props.color}>
+                                    header.map((item) =>  <th className={"border"} key={item} color={props.color}>
                                                             <Button {...props}
                                                             className={CreateClassName("head-cell no-active", {
                                                                                     order: order.direction && order.header === item
@@ -116,7 +116,7 @@ export const Table: React.FC<TableProps> = ({
                                 {
                                     currentData.map(line => <tr onClick={selectable ? (e) => clickHandler(line) : undefined}
                                                                 className={CreateClassName("", {
-                                                                    selected: selected === line.toString()
+                                                                    "selected fill alt": selected === line.toString()
                                                                 })}>
                                                             {
                                                                 line.map(data => <td>{data}</td>)

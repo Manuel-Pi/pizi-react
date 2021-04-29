@@ -15,6 +15,10 @@
         &.border-light{
             border-color: fade(@@colorVar, 20%);
         }
+
+        .border{
+            border-color: @@colorVar;
+        }
     }
     [class^="pizi-"].@{color}.fill{
         background-color: @@colorVar;
@@ -25,7 +29,7 @@
             color: @@colorVar;  
         }
 
-        .pizi-button.secondary:active{
+        .pizi-button.secondary:not(.no-active):active{
             color: @@colorVar; 
         }
 
