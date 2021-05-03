@@ -4,7 +4,7 @@ import { ComponentProps, defaultProps } from '../PiziComponent/PiziComponent';
 import { CreateClassName } from '../../utils/ClassNameHelper';
 
 export interface FormInputProps extends  Omit<ComponentProps, "defaultValue" | "onChange">{
-    className: string
+    className?: string
 	inputName: string
     readOnly?: boolean
     label?: string
