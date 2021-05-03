@@ -16,10 +16,10 @@ export interface TableOrder {
 
 export interface TableProps extends Omit<ComponentProps, 'size'>{
     header: string[]
-    data: string[][]
+    data: any[][]
     defaultOrder?: TableOrder
     selectable?: boolean
-    onSelected?: (selection: string[]) => void
+    onSelected?: (selection: any[]) => void
 }
 
 /**
