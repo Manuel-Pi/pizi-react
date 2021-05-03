@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './text-input.less';
-import { ComponentProps, GetComponentClassNames } from '../PiziComponent/PiziComponent';
+import { GetComponentClassNames } from '../PiziComponent/PiziComponent';
 import { CreateClassName } from '../../utils/ClassNameHelper';
 import { FormInput, FormInputProps } from '../PiziComponent/FormInput';
 
@@ -42,6 +42,7 @@ export const TextInput: React.FC<TextInputProps & React.HTMLAttributes<HTMLDivEl
 				<input 	type={type} 
 						value={value} 
 						onChange={e => handleChange(e.currentTarget.value)} 
-						placeholder={props.placeholder}/>
+						placeholder={props.placeholder}
+						readOnly={props.readOnly}/>
 			</FormInput>
 };
