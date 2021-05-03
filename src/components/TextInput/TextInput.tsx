@@ -4,7 +4,7 @@ import { ComponentProps, GetComponentClassNames } from '../PiziComponent/PiziCom
 import { CreateClassName } from '../../utils/ClassNameHelper';
 import { FormInput, FormInputProps } from '../PiziComponent/FormInput';
 
-export interface TextInputProps extends FormInputProps{
+export interface TextInputProps extends Omit<FormInputProps, 'inputName'>{
 	defaultValue?: string
 	type?: string
 	valdationRegex?: RegExp
