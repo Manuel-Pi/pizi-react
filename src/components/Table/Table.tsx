@@ -87,9 +87,7 @@ export const Table: React.FC<TableProps> = ({
         })())
     }, []);
 
-    useEffect(() => {
-        orderTable(order)
-    }, [data, props.color, props.appearance]);
+    useEffect(() => orderTable(order), [data, props.color, props.appearance]);
 
 	return  <div className={CreateClassName(GetComponentClassNames('pizi-table', props))}>
                 <div className="pizi-table-container">
