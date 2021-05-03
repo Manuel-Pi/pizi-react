@@ -5,8 +5,8 @@ import { CreateClassName } from '../../utils/ClassNameHelper';
 import { FormInput, FormInputProps } from '../PiziComponent/FormInput';
 
 export interface TextInputProps extends FormInputProps{
-	defaultValue: string
-	type: 'text'
+	defaultValue?: string
+	type?: string
 	valdationRegex?: RegExp
 	valdationMessage?: String
 }
