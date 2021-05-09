@@ -54,10 +54,10 @@ export const Modal: React.FC<ModalProps & React.HTMLAttributes<HTMLDivElement>> 
 
 	if(type !== "custom"){
 		if(type && (type !== "info" || !closeButton)){
-			modalActions.push(<Button key="confirm" size="large" color={props.appearance === "fill" && GetAltColor(props.color) || props.color} name="confirm">Ok</Button>)
+			modalActions.push(<Button key="confirm" color={props.appearance === "fill" && GetAltColor(props.color) || props.color} name="confirm">Ok</Button>)
 		}
 		if(type === 'confirm'){
-			modalActions.push(<Button key="cancel" size="large" color={props.color === "secondary" ? "main" : "secondary"} name="cancel" appearance="border">Cancel</Button>)
+			modalActions.push(<Button key="cancel" color={props.color === "secondary" ? "main" : "secondary"} name="cancel" appearance="border">Cancel</Button>)
 		}
 		modalActions.push(...actions)
 	} else {
