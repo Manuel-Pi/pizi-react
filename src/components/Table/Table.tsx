@@ -44,11 +44,10 @@ export const Table: React.FC<TableProps> = ({
    
     const orderTable = useCallback((order: TableOrder) => {
         if(order.direction) orderedData.sort((a, b) => {
-
-            if(sort[order.header]) return sort[order.header](a,b);
-
             let itemA = a[header.indexOf(order.header)];
             let itemB = b[header.indexOf(order.header)];
+
+            if(sort[order.header]) return sort[order.header](itemA, itemB);
 
             if(typeof itemA === 'string') itemA = itemA.trim().toLowerCase();
             if(typeof itemB === 'string') itemB = itemB.trim().toLowerCase();
