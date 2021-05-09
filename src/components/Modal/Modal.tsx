@@ -83,7 +83,7 @@ export const Modal: React.FC<ModalProps & React.HTMLAttributes<HTMLDivElement>> 
 									}
 									</header>
 					}
-					<div className={"pizi-container alt"}>
+					<div className={"pizi-container"}>
 						{children}
 					</div>
 					{
