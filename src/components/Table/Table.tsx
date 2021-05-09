@@ -20,6 +20,7 @@ export interface TableProps extends Omit<ComponentProps, 'size'>{
     defaultOrder?: TableOrder
     selectable?: boolean
     onSelected?: (selection: any[]) => void
+    sort?: {[key:string]: (a: any, b:any) => number}
 }
 
 /**
@@ -31,6 +32,7 @@ export const Table: React.FC<TableProps> = ({
     defaultOrder =  {direction: null, header: null},
     selectable = true,
     onSelected = () => {},
+    sort = {},
 	...other
 }) => {
     const props = {...defaultProps, ...other};
@@ -42,8 +44,14 @@ export const Table: React.FC<TableProps> = ({
    
     const orderTable = useCallback((order: TableOrder) => {
         if(order.direction) orderedData.sort((a, b) => {
-            const itemA = a[header.indexOf(order.header)].trim().toLowerCase();
-            const itemB = b[header.indexOf(order.header)].trim().toLowerCase();
+
+            if(sort[order.header]) return sort[order.header](a,b);
+
+            let itemA = a[header.indexOf(order.header)];
+            let itemB = b[header.indexOf(order.header)];
+
+            if(typeof itemA === 'string') itemA = itemA.trim().toLowerCase();
+            if(typeof itemB === 'string') itemB = itemB.trim().toLowerCase();
             return itemA > itemB ? 1 : itemA < itemB ? -1 : 0
         })
         if(order.direction === "up") orderedData.reverse();
