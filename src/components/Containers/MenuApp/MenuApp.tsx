@@ -1,78 +1,94 @@
-import React, { Children, ReactElement, cloneElement } from 'react'
+import React from 'react'
 import './menuapp.less'
-import { ComponentProps, InitProps } from '../../../utils/PiziComponent/PiziComponent'
+import { InitProps } from '../../../utils/PiziComponent/PiziComponent'
 import { MenuBar, MenuBarProps } from './MenuBar'
 import { Outlet, RouteObject, RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { createStaticHandler, createStaticRouter, StaticHandlerContext, StaticRouterProvider } from 'react-router-dom/server.js'
 import { IconName } from '@fortawesome/fontawesome-svg-core'
-import { AppScreenProps } from './AppScreen'
 import { ErrorScreen } from './ErrorScreen'
+import { isBrowser } from '../../../utils/Utils'
 
-export interface MenuAppProps extends ComponentProps, Omit<MenuBarProps, "routes">{}
+export interface MenuAppProps extends Omit<MenuBarProps, "routes">{
+	routes: PiziRoute[]
+	context?: StaticHandlerContext 
+	user?: any
+	loginUrl?: string
+}
 
-export type PiziRoute = RouteObject & {
+export type PiziRoute = Omit<RouteObject, 'children'> & {
+	icon?: IconName,
+	title?: string,
+	noMenu?: boolean
 	hideInMenu?: boolean
-	icon: IconName,
-	title: string,
-	noMenu: boolean
+	authenticate?: boolean
+	children?: PiziRoute[]
 }
 
-function createRoutesFromChildren(children: React.ReactNode, parent?: ReactElement): [PiziRoute[], ReactElement[]]{
-	const routes: PiziRoute[] = []
-	const extraElements: ReactElement[] = []
-	React.Children.forEach(children, child => {
-		if(!React.isValidElement(child)) throw new Error("Cannot allow non valid react element children inside menubar!")
-		if(child.props.path){
-			const screenProps = child.props as AppScreenProps
-			const [subRoutes] = createRoutesFromChildren(child.props.children, child)
-			const element = subRoutes.length ? cloneElement(child, child.props, <Outlet/>) : child
-			routes.push({
-				path: (parent?.props.path || "") + screenProps.path,
-				icon: screenProps.icon,
-				title: screenProps.title,
-		  		element,
-				hideInMenu: screenProps.hideInMenu,
-				noMenu: !!screenProps.noMenu,
-				children: subRoutes
-			})
-		} else {
-			extraElements.push(child)
-		}
-	})
-	return [routes, extraElements]
-}
-
-/**
- * MenuBar UI component
- */
-export const MenuApp: React.FC<MenuAppProps & React.HTMLAttributes<HTMLDivElement>> =  React.memo((props) => {
-	props = InitProps(props)
-	const [routes, extraElements] = createRoutesFromChildren(props.children)
-
-	const Layout: React.FC<MenuAppProps & React.HTMLAttributes<HTMLDivElement>> = (p) => <>
-		<MenuBar routes={routes} {...props}>
-			{extraElements}
-		</MenuBar>
-		<div className="pizi-menu-app-container">
-			{Children.map(p.children, child => child)}
-		</div>
-	</>
-
+export function getMenuAppProps(props: MenuAppProps){
 	const noMenuRoutes = []
 	const menuRoutes = []
-	for(const route of routes) route.noMenu ? noMenuRoutes.push(route) : menuRoutes.push(route)
-
-	const router = createBrowserRouter([{
+	props = InitProps(props)
+	for(const route of props.routes){
+		if(route.authenticate && route.element) route.element = <ProtectedRoute loginUrl={props.loginUrl} user={props.user}>{route.element}</ProtectedRoute>
+		route.noMenu ? noMenuRoutes.push(route) : menuRoutes.push(route)
+	}
+	props.routes = [{
 		errorElement: <ErrorScreen/>,
 		children: [{
-			element: <Layout><Outlet/></Layout>,
+			element: <MenuAppLayout {...props}/>,
 			children: menuRoutes
 		},
 		{
 			children: noMenuRoutes
 		}]
-	}])
+	}]
+	return props
+}
 
-	return 	<div className={"pizi-menu-app"}>
-				<RouterProvider router={router}/>
+export async function getMenuAppPropsFromServer(props: MenuAppProps, req: Request){
+	props = getMenuAppProps(props)
+	const handler = createStaticHandler(props.routes as RouteObject[])
+	props.context = await handler.query(req) as StaticHandlerContext
+	return props
+}
+
+export const MenuAppLayout: React.FC<MenuAppProps & React.HTMLAttributes<HTMLDivElement>> = (menuBarProps) => <>
+	<MenuBar {...menuBarProps}/>
+	<div className="pizi-menu-app-container">
+		<Outlet/>
+	</div>
+</>
+
+interface IProtectedRoute extends React.PropsWithChildren {
+	user?: any
+	loginUrl?: string
+}
+
+export const ProtectedRoute: React.FC<IProtectedRoute> = ({user, children, loginUrl = "/login"}) => <>
+	{ user ? children : location.href = loginUrl}
+</>
+
+/**
+ * MenuBar UI component
+ */
+export const MenuApp: React.FC<MenuAppProps & React.HTMLAttributes<HTMLDivElement>> = React.memo((props) => {
+	const browserRouterOptions: Parameters<typeof createBrowserRouter>[1] = {}
+	if(props.context){
+		browserRouterOptions.hydrationData = {
+			loaderData: props.context.loaderData,
+			actionData: props.context.actionData,
+			errors: 	props.context.errors
+		}
+	} else {
+		props = getMenuAppProps(props)
+	}
+	
+	return 	<div className="pizi-menu-app">
+				{ 
+					isBrowser() ? 
+					<RouterProvider router={createBrowserRouter(props.routes as RouteObject[], browserRouterOptions)}/>
+					: 
+					<StaticRouterProvider router={createStaticRouter(props.routes as RouteObject[], props.context!)} context={props.context!} hydrate={false}/>
+				}
 	        </div>
 })

@@ -8,8 +8,12 @@ import { MenuItem } from './MenuItem'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { PiziRoute } from './MenuApp'
 import { NavLink } from 'react-router-dom'
+import { faBars } from '@fortawesome/free-solid-svg-icons/faBars'
+import { faUser } from '@fortawesome/free-solid-svg-icons/faUser'
+import { registerIcons } from "../../../utils/Utils"
+registerIcons(faBars, faUser)
 
-export interface MenuBarProps extends ComponentProps{
+export interface MenuBarProps extends ComponentProps<HTMLDivElement>{
 	logo?: ReactElement
 	user?: string
 	routes: PiziRoute[]
@@ -19,7 +23,7 @@ export interface MenuBarProps extends ComponentProps{
 	menuBottom?: React.ReactElement
 }
 
-export const MenuBar: React.FC<MenuBarProps & React.HTMLAttributes<HTMLDivElement>> = React.memo(({
+export const MenuBar: React.FC<MenuBarProps> = React.memo(({
 	routes,
 	user,
 	open = false,
@@ -57,7 +61,7 @@ export const MenuBar: React.FC<MenuBarProps & React.HTMLAttributes<HTMLDivElemen
 						...props, 
 						alt: props.appearance !== "fill"
 					})}>
-					<NavLink to="/" className={ClassNameHelper("pizi-menubar__bar__logo", menuBarColor)}>
+					<NavLink to="/" className={ClassNameHelper("pizi-menubar__bar__logo simple", menuBarColor)}>
 						{props.logo}
 					</NavLink>
 					{

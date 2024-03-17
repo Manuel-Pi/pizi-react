@@ -1,0 +1,93 @@
+@import (reference) "../../../styles/variables.less";
+@import (reference) "../../../styles/component-mixins.less";
+
+.pizi-json{
+    .json-object{
+        font-size: 14px;
+        border-left: 1px solid #333;
+        margin-left: 5px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+
+        > div {
+            display: flex
+        }
+    
+        .json-object-value{
+            color: #BBB;
+            padding-left: 10px;
+        }
+        .json-object-key{
+            color: #666;
+            padding-right: 8px;
+    
+            & + .json-object > .delimiter{
+                display: none;
+            }
+        }
+
+        .json-object-valuestring{
+            .json-string{
+                
+            }
+        }
+
+        & + .json-object{
+            margin-top: 8px;
+        }
+    }
+
+    .json-string{
+        color: #BBB;
+        &.uuid, &.id{
+            color: lightskyblue;
+            white-space: nowrap;
+        }
+        &.id{
+            color: lighten(lightskyblue, 10%);
+            //color: RosyBrown;
+        }
+        &.date{
+            color: PaleGoldenRod;
+        }
+        &.email{
+            white-space: nowrap;
+        }
+    }
+
+    .json-boolean{
+        color: darkseagreen;
+        white-space: nowrap;
+        &.false{
+            color: @color-error;
+        }
+    }
+
+    .json-number{
+        white-space: nowrap;
+        color: @color-main;
+    }
+    
+    .json-array{
+        display: flex;
+        flex-direction: column;
+        
+        > .json-object{
+            &:nth-child(odd){
+                background-color: #000;
+            }
+            &:nth-child(even){
+                background-color: #111;
+                border-left: 1px solid #444;
+    
+                .json-object-key{
+                    color: #777;
+                }
+            }
+        }
+    }
+    
+    .json-array .json-object, .json-object .json-object{
+        padding-left: 10px;
+    }
+}

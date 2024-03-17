@@ -4,16 +4,16 @@ import { ComponentProps } from '../../../utils/PiziComponent/PiziComponent';
 /**
  * Accordion Item
  */
-export interface AccordionItemProps extends ComponentProps {
+export interface AccordionItemProps extends ComponentProps<HTMLDivElement> {
     title: string;
     default?: boolean;
 }
-export declare const AccordionItem: React.FC<AccordionItemProps & React.HTMLAttributes<HTMLDivElement>>;
+export declare const AccordionItem: React.FC<AccordionItemProps>;
 /**
  * Accordion
  */
-export interface AccordionProps extends ComponentProps {
+export interface AccordionProps extends ComponentProps<HTMLDivElement> {
     singleExpension?: boolean;
     statusIcon?: boolean;
 }
-export declare const Accordion: React.FC<AccordionProps & React.HTMLAttributes<HTMLDivElement>>;
+export declare const Accordion: React.FC<AccordionProps>;

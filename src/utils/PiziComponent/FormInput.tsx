@@ -3,7 +3,7 @@ import './form-input.less'
 import { ComponentProps } from './PiziComponent'
 import { ClassNameHelper } from '../Utils'
 
-export interface FormInputProps extends  Omit<ComponentProps, "defaultValue" | "onChange" | "onError" | "appearance">{
+export interface FormInputProps<T = HTMLElement> extends  Omit<ComponentProps<T>, "defaultValue" | "onChange" | "onError" | "appearance">{
     className?: string
 	inputName?: string
     readOnly?: boolean
@@ -19,7 +19,7 @@ export interface FormInputProps extends  Omit<ComponentProps, "defaultValue" | "
 /**
  * Base Form Input UI component
  */
-export const FormInput: React.FC<FormInputProps & React.HTMLAttributes<HTMLInputElement>> = ({
+export const FormInput: React.FC<FormInputProps> = ({
     label,
     className,
     inputName,
@@ -30,6 +30,7 @@ export const FormInput: React.FC<FormInputProps & React.HTMLAttributes<HTMLInput
 	...props
 }) => {
 	return <div key={props.key}
+                id={props.id}
                 className={ClassNameHelper("pizi-input", inputName, props.size, {
                                                                         error: !!props.error, 
                                                                         alt: appearance === "alt", 

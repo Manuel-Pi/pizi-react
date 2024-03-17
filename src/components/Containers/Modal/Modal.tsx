@@ -5,10 +5,12 @@ import { ClassNameHelper } from '../../../utils/Utils'
 import { Button } from '../../Controls/Button/Button'
 import { Heading } from '../../Typography/Heading/Heading'
 import { ButtonGroup } from '../../Controls/ButtonGroup/ButtonGroup'
-import { TabProps, Tabs, TabsProps } from '../Tabs/Tabs'
-import { Tab } from '../../..'
+import { Tab, TabProps, Tabs, TabsProps } from '../Tabs/Tabs'
+import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes'
+import { registerIcons } from "../../../utils/Utils"
+registerIcons(faTimes)
 
-export interface ModalProps extends ComponentProps{
+export interface ModalProps extends ComponentProps<HTMLDivElement>{
 	type?: 'info' | 'confirm' | 'custom'
 	open?: boolean
 	onClose?: (closeActionName: string | undefined) => void | boolean
@@ -23,7 +25,7 @@ export interface ModalProps extends ComponentProps{
 /**
  * Modal UI component
  */
-export const Modal: React.FC<ModalProps & React.HTMLAttributes<HTMLDivElement>> = ({
+export const Modal: React.FC<ModalProps> = ({
 	type = "info",
 	open = false,
 	onClose = () => {},
@@ -149,8 +151,4 @@ export const Modal: React.FC<ModalProps & React.HTMLAttributes<HTMLDivElement>> 
 					{closeButton && <Button name="close-cross" icon="times" align="right" className="alt" appearance={"simple"} onClick={closeModal}/>}
 				</div>
 			</div>
-}
-
-Modal.defaultProps = {
-	appearance: "fill"
 }

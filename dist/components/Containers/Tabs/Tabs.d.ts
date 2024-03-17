@@ -9,4 +9,4 @@ export declare const Tab: React.FC<TabProps>;
 export interface TabsProps extends ComponentProps {
     tabsPosition?: "top" | "left";
 }
-export declare const Tabs: React.FC<TabsProps & React.HTMLAttributes<HTMLDivElement>>;
+export declare const Tabs: React.FC<TabsProps>;

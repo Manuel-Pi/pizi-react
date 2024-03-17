@@ -3,9 +3,9 @@ import { Button, ButtonProps } from '../Button/Button'
 import { CleanProps, ComponentProps, GetComponentClassNames, InitProps } from '../../../utils/PiziComponent/PiziComponent'
 import './button-group.less'
 
-export interface ButtonGroupProps extends ComponentProps{}
+export interface ButtonGroupProps extends ComponentProps<HTMLDivElement>{}
 
-export const ButtonGroup: React.FC<ButtonGroupProps & React.HTMLAttributes<HTMLDivElement>> = (props) => {
+export const ButtonGroup: React.FC<ButtonGroupProps> = (props) => {
 	props = InitProps(props)
 	return 	<div {...CleanProps(props)} className={GetComponentClassNames("pizi-button-group", props)}>
 				{

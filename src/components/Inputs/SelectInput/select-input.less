@@ -6,6 +6,33 @@
     max-width: 350px;
     position: relative;
 
+    .pizi-select-input__input{
+        position: relative;
+    }
+
+    .caret, .pizi-spinner.large{
+        position: absolute;
+        right: 0.68em;
+        bottom: 0.7em;
+        font-size: 1.4em;
+        pointer-events: none;
+    }
+
+    .pizi-spinner.large{
+        font-size: 1em;
+        bottom: 1em;
+        right: 0.88em;
+    }
+
+    &.multiple{
+        .pizi-spinner.large{
+            right: 0;
+            font-size: 1.6em;
+            width: 100%;
+            bottom: calc(~"50% - 0.6em");
+        }
+    }
+
     select{
         background-color: transparent;
         appearance: none;
@@ -15,12 +42,13 @@
         width: 100%;
         margin-top: 0.6em;
         font-size: 1.4em;
-        padding: 0.3em 0;
+        padding: 0.3em 0.4em;
         color: @color-white;
         cursor: pointer;
         height: auto;
 
         &[multiple]{
+            padding: 0.3em 0;
             option:checked {
                 background: fade(@color-main, 80%);
             }
@@ -58,12 +86,5 @@
         &::-webkit-scrollbar-track {
             background: fade(@color-teritary, 15%); 
         }
-    }
-
-    .caret{
-        position: absolute;
-        right: 0.68em;
-        bottom: 0.7em;
-        font-size: 1.4em;
     }
 }

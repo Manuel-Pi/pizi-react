@@ -5,10 +5,10 @@ import { ClassNameHelper } from '../../../utils/Utils'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconName, IconPrefix } from '@fortawesome/free-solid-svg-icons';
 
-export interface ListProps extends ComponentProps{
+export interface ListProps extends ComponentProps<HTMLUListElement>{
 	type?: 'ul' | 'ol'
 	styleType?: 'dot' | 'circle' | 'donut' | 'circle-dot' | 'square' | 'empty-square' | 'arrow' | 'chevron' | 'caret'
-	items: string[] | React.JSX.Element[]
+	items: string[] | React.ReactElement[]
 }
 
 function getIcon(styleType: ListProps["styleType"]): [IconPrefix, IconName]{
@@ -38,7 +38,7 @@ function getIcon(styleType: ListProps["styleType"]): [IconPrefix, IconName]{
 /**
  * List UI component
  */
-export const List: React.FC<ListProps & React.HTMLAttributes<HTMLUListElement>> = ({
+export const List: React.FC<ListProps> = ({
 	appearance = 'simple',
 	type = 'ul',
 	styleType = 'dot',

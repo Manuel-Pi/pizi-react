@@ -2,10 +2,10 @@ import React from 'react';
 import './menu.less'
 import { ComponentProps, GetComponentClassNames, InitProps } from '../../../utils/PiziComponent/PiziComponent'
 import { ClassNameHelper } from '../../../utils/Utils'
-import { IconName } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { IconName } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-export interface MenuProps extends ComponentProps{
+export interface MenuProps extends ComponentProps<HTMLDivElement>{
 	title: string
 	icon: React.ReactElement
 	links: {title: string, link: string, icon: IconName}[]
@@ -14,7 +14,7 @@ export interface MenuProps extends ComponentProps{
 /**
  * Menu UI component
  */
-export const Menu: React.FC<MenuProps & React.HTMLAttributes<HTMLDivElement>> = ({
+export const Menu: React.FC<MenuProps> = ({
 	links = [],
 	icon,
 	title,

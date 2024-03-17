@@ -1,13 +1,13 @@
-import React, { ReactElement, useEffect, useState, useCallback, useRef} from 'react';
-import { ClassNameHelper } from '../../../utils/Utils';
-import { Button } from '../../Controls/Button/Button';
-import { Pagination, PaginationProps } from '../../Controls/Pagination/Pagination';
-import { ComponentProps, GetComponentClassNames, InitProps, GetAltColor, CleanProps, GetAltColorFromTest, GetProps } from '../../../utils/PiziComponent/PiziComponent';
+import React, { ReactElement, useEffect, useState, useCallback } from 'react'
+import { ClassNameHelper } from '../../../utils/Utils'
+import { Button } from '../../Controls/Button/Button'
+import { Pagination, PaginationProps } from '../../Controls/Pagination/Pagination'
+import { ComponentProps, GetComponentClassNames, InitProps, GetAltColor, CleanProps, GetAltColorFromTest, GetProps } from '../../../utils/PiziComponent/PiziComponent'
 import './table.less';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import {faSortAmountDownAlt} from '@fortawesome/free-solid-svg-icons/faSortAmountDownAlt';
-import {faSortAmountUp} from '@fortawesome/free-solid-svg-icons/faSortAmountUp';
-library.add(faSortAmountDownAlt, faSortAmountUp);
+import {faSortAmountDownAlt} from '@fortawesome/free-solid-svg-icons/faSortAmountDownAlt'
+import {faSortAmountUp} from '@fortawesome/free-solid-svg-icons/faSortAmountUp'
+import { registerIcons } from "../../../utils/Utils"
+registerIcons(faSortAmountDownAlt,faSortAmountUp)
 
 export interface TableOrder {
     direction?: 'up' | 'down'
@@ -49,6 +49,8 @@ export const Table: React.FC<TableProps> = React.memo(({
     const [currentData, setData] = useState(orderedData)
     const [pagination, setPagination] = useState< React.ReactElement<PaginationProps>>()
     const [selected, setSelected] = useState<string>()
+
+    orderedData.forEach((data: any, index) => data.key = index)
    
     const orderTable = useCallback((order: TableOrder) => {
         if(order.direction) orderedData.sort((a, b) => {
@@ -145,7 +147,7 @@ export const Table: React.FC<TableProps> = React.memo(({
                         <tbody>
                                 {
                                     currentData.map((line) => <tr onClick={(e) => clickHandler(line)}
-                                                                key={line.toString()}
+                                                                key={(line as any).key || line[0]?.toString()}
                                                                 className={ClassNameHelper("", {
                                                                     "selected fill alt": selected === line.toString() && overColor
                                                                 })}>

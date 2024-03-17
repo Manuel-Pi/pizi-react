@@ -26,9 +26,9 @@ type Story = StoryObj<typeof Table>
 const header = ["header 1", "header 2", "header 3", "header 4"]
 
 const createData = (lines = 10, columns = 4) => {
-	let data = [];
+	let data: string[][] = [];
 	for(let i = 0; i < lines; i++){
-		const dataLine = [];
+		const dataLine: string[] = [];
 		for(let j = 0; j < columns; j++) dataLine.push("data fake test " + i + "" + j)
 		data.push(dataLine);
 	}
