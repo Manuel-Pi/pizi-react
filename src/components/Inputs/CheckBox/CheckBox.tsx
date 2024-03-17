@@ -1,13 +1,21 @@
-import React, { useState } from 'react';
+import React, { useId, useState } from 'react'
 import './checkbox.less'
-import { ComponentProps, GetComponentClassNames } from '../../../utils/PiziComponent/PiziComponent'
 import { ClassNameHelper } from '../../../utils/Utils'
-import { FormInput, FormInputProps } from '../../../utils/PiziComponent/FormInput';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FormInput, FormInputProps } from '../../../utils/PiziComponent/FormInput'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck'
+import { registerIcons } from "../../../utils/Utils"
+registerIcons(faCheck)
 
 export interface CheckBoxProps extends FormInputProps{
 	onChange?: (value: boolean) => void
 	defaultValue?: boolean
+}
+
+let checkBoxId = 0
+function getNextId(){
+	checkBoxId++
+	return checkBoxId
 }
 
 /**
@@ -20,7 +28,7 @@ export const CheckBox: React.FC<CheckBoxProps & React.HTMLAttributes<HTMLDivElem
 }) => {
 
 	const [checked, setChecked] = useState(defaultValue)
-	const inputId = 'pizi-checkbox' + (Math.floor(Math.random() * 1000))
+	const inputId = useId()
 
 	return 	<FormInput 	inputName="pizi-checkbox" 
 						labelPosition={props.labelPosition}

@@ -8,7 +8,7 @@ import { IconName, IconPrefix } from '@fortawesome/free-solid-svg-icons';
 export interface ListProps extends ComponentProps{
 	type?: 'ul' | 'ol'
 	styleType?: 'dot' | 'circle' | 'donut' | 'circle-dot' | 'square' | 'empty-square' | 'arrow' | 'chevron' | 'caret'
-	items: string[] | React.JSX.Element[]
+	items: string[] | React.ReactElement[]
 }
 
 function getIcon(styleType: ListProps["styleType"]): [IconPrefix, IconName]{

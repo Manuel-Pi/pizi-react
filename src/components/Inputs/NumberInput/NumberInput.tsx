@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import './number-input.less';
-import { ComponentProps, GetComponentClassNames } from '../../../utils/PiziComponent/PiziComponent';
-import { ClassNameHelper } from '../../../utils/Utils';
-import { FormInput, FormInputProps } from '../../../utils/PiziComponent/FormInput';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Button } from '../../Controls/Button/Button';
+import React, { useEffect, useState } from 'react'
+import './number-input.less'
+import { FormInput, FormInputProps } from '../../../utils/PiziComponent/FormInput'
+import { Button } from '../../Controls/Button/Button'
+import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus'
+import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus'
+import { registerIcons } from "../../../utils/Utils"
+registerIcons(faMinus, faPlus)
 
 export interface NumberInputProps extends FormInputProps{
 	step?: number

@@ -1,13 +1,13 @@
-import React, { ReactElement, useEffect, useState, useCallback, useRef} from 'react';
-import { ClassNameHelper } from '../../../utils/Utils';
-import { Button } from '../../Controls/Button/Button';
-import { Pagination, PaginationProps } from '../../Controls/Pagination/Pagination';
-import { ComponentProps, GetComponentClassNames, InitProps, GetAltColor, CleanProps, GetAltColorFromTest, GetProps } from '../../../utils/PiziComponent/PiziComponent';
+import React, { ReactElement, useEffect, useState, useCallback } from 'react'
+import { ClassNameHelper } from '../../../utils/Utils'
+import { Button } from '../../Controls/Button/Button'
+import { Pagination, PaginationProps } from '../../Controls/Pagination/Pagination'
+import { ComponentProps, GetComponentClassNames, InitProps, GetAltColor, CleanProps, GetAltColorFromTest, GetProps } from '../../../utils/PiziComponent/PiziComponent'
 import './table.less';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import {faSortAmountDownAlt} from '@fortawesome/free-solid-svg-icons/faSortAmountDownAlt';
-import {faSortAmountUp} from '@fortawesome/free-solid-svg-icons/faSortAmountUp';
-library.add(faSortAmountDownAlt, faSortAmountUp);
+import {faSortAmountDownAlt} from '@fortawesome/free-solid-svg-icons/faSortAmountDownAlt'
+import {faSortAmountUp} from '@fortawesome/free-solid-svg-icons/faSortAmountUp'
+import { registerIcons } from "../../../utils/Utils"
+registerIcons(faSortAmountDownAlt,faSortAmountUp)
 
 export interface TableOrder {
     direction?: 'up' | 'down'

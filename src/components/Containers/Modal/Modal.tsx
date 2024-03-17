@@ -5,8 +5,10 @@ import { ClassNameHelper } from '../../../utils/Utils'
 import { Button } from '../../Controls/Button/Button'
 import { Heading } from '../../Typography/Heading/Heading'
 import { ButtonGroup } from '../../Controls/ButtonGroup/ButtonGroup'
-import { TabProps, Tabs, TabsProps } from '../Tabs/Tabs'
-import { Tab } from '../../..'
+import { Tab, TabProps, Tabs, TabsProps } from '../Tabs/Tabs'
+import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes'
+import { registerIcons } from "../../../utils/Utils"
+registerIcons(faTimes)
 
 export interface ModalProps extends ComponentProps{
 	type?: 'info' | 'confirm' | 'custom'

@@ -3,6 +3,10 @@ import React from "react"
 import { useRouteError } from "react-router-dom"
 import './error.less'
 import { Link } from "../../Typography/Links/Link"
+import { faGhost } from '@fortawesome/free-solid-svg-icons/faGhost'
+import { faBug } from '@fortawesome/free-solid-svg-icons/faBug'
+import { registerIcons } from "../../../utils/Utils"
+registerIcons(faGhost, faBug)
 
 export const ErrorScreen: React.FC<React.HTMLAttributes<HTMLDivElement>> = (props) => {
 	const error = useRouteError() as any

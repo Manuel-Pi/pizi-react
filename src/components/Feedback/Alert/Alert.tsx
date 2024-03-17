@@ -2,6 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import './alert.less'
 import { ComponentProps, GetComponentClassNames, InitProps } from '../../../utils/PiziComponent/PiziComponent'
 import { Button } from '../../Controls/Button/Button'
+import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes'
+import { registerIcons } from "../../../utils/Utils"
+registerIcons(faTimes)
 
 export interface AlertProps extends ComponentProps{
 	timeout?: number

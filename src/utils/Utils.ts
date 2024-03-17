@@ -1,3 +1,14 @@
+import { IconDefinition, library, config } from '@fortawesome/fontawesome-svg-core'
+import ReactDOM from 'react-dom/client'
+
+declare global {
+    var SSR: boolean
+    var ServerState: any
+}
+
+// Disable fontawesome CSS head injection if SSR before calling any icons
+if(isSSR()) config.autoAddCss = false
+
 export const ClassNameHelper = (...args: (string | {[key: string]: any} | undefined)[]):string => args.map(argument => {
     if(typeof argument === 'string'){
         return argument
@@ -6,11 +17,21 @@ export const ClassNameHelper = (...args: (string | {[key: string]: any} | undefi
     }
 }).filter(value => !!value).join(' ')
 
+export function isBrowser(){
+    return typeof window !== 'undefined'
+}
+
+export function isSSR(){
+    return typeof SSR !== 'undefined'
+}
+
 /* Breakpoints */
 export type Breakpoint = "xs" | "sm" | "md" | "lg"
 
 // https://gomakethings.com/the-easy-way-to-manage-css-breakpoints-in-javascript/
 export const GetBreakpoint = ():Breakpoint => getComputedStyle(document.body, ':before').content.replace(/\"/g, '') as Breakpoint
+
+const initialBreakpoint =  isBrowser() ? GetBreakpoint(): "xs"
 
 const breakpoint: {
     initial: Breakpoint, 
@@ -19,8 +40,8 @@ const breakpoint: {
     callabacks: ((breakpoint: Breakpoint) => void)[],
     debounceDelay: number
 } = {
-    initial: GetBreakpoint(),
-    current: GetBreakpoint(),
+    initial: initialBreakpoint,
+    current: initialBreakpoint,
     listener: false,
     callabacks: [],
     debounceDelay: 100
@@ -68,4 +89,22 @@ export const autoHeight = (ref: React.MutableRefObject<null>) => {
     const htmlElement: any = ref.current
 	const styles = getComputedStyle(htmlElement)
 	htmlElement.style.height = `${htmlElement.scrollHeight + parseFloat(styles.borderWidth) * 2}px`
+}
+
+export function registerIcons(...icons: IconDefinition[]){
+    library.add(...icons)
+}
+
+export function renderApp(rootComponent: React.ReactNode, container: Element = document.getElementsByTagName("app")[0]){
+    if(isSSR()){
+        ReactDOM.hydrateRoot(container, rootComponent)
+    } else {
+        const root = ReactDOM.createRoot(container)
+        root.render(rootComponent)
+    }
+}
+
+export function getServerState(){
+    if(!isSSR() || typeof ServerState === 'undefined') return
+    return ServerState
 }

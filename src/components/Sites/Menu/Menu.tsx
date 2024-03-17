@@ -2,8 +2,8 @@ import React from 'react';
 import './menu.less'
 import { ComponentProps, GetComponentClassNames, InitProps } from '../../../utils/PiziComponent/PiziComponent'
 import { ClassNameHelper } from '../../../utils/Utils'
-import { IconName } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { IconName } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export interface MenuProps extends ComponentProps{
 	title: string

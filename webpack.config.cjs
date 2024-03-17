@@ -1,6 +1,6 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
-const webpack = require("webpack")
+const TerserPlugin = require("terser-webpack-plugin")
 
 let config = {
     devtool: false,
@@ -10,9 +10,12 @@ let config = {
         path: __dirname + '/dist',
         filename: 'index.js',
         library: {
-            name: 'pizi-react',
-            type: 'umd'
-          }
+            type: 'module'
+        }
+    },
+
+    experiments:{
+        outputModule: true
     },
 
     resolve: {
@@ -45,10 +48,7 @@ let config = {
             filename: 'style.css'
         })
     ],
-    externals: {
-        "react": "React",
-        "react-dom/client": "ReactDOM"
-    }
+    externals: ["react", "react-dom/client"]
 }
 
 module.exports = (env, argv) => {
@@ -61,7 +61,8 @@ module.exports = (env, argv) => {
     if (argv.mode === 'production') {
         config.optimization = {
             minimizer: [
-                new CssMinimizerPlugin()
+                new CssMinimizerPlugin(),
+                new TerserPlugin()
             ]
         }
     }

@@ -8,6 +8,10 @@ import { MenuItem } from './MenuItem'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { PiziRoute } from './MenuApp'
 import { NavLink } from 'react-router-dom'
+import { faBars } from '@fortawesome/free-solid-svg-icons/faBars'
+import { faUser } from '@fortawesome/free-solid-svg-icons/faUser'
+import { registerIcons } from "../../../utils/Utils"
+registerIcons(faBars, faUser)
 
 export interface MenuBarProps extends ComponentProps{
 	logo?: ReactElement

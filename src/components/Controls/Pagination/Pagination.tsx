@@ -3,6 +3,12 @@ import { Button } from '../Button/Button'
 import { ButtonGroup } from '../ButtonGroup/ButtonGroup'
 import { ComponentProps, InitProps } from '../../../utils/PiziComponent/PiziComponent'
 import './pagination.less'
+import { faAngleRight } from '@fortawesome/free-solid-svg-icons/faAngleRight'
+import { faAngleLeft } from '@fortawesome/free-solid-svg-icons/faAngleLeft'
+import { faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons/faAngleDoubleRight'
+import { faAngleDoubleLeft } from '@fortawesome/free-solid-svg-icons/faAngleDoubleLeft'
+import { registerIcons } from "../../../utils/Utils"
+registerIcons(faAngleRight, faAngleLeft, faAngleDoubleRight, faAngleDoubleLeft)
 
 export interface PaginationProps extends Omit<ComponentProps, "onChange">{
     data?: {[key: string]:any}[]

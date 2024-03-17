@@ -3,6 +3,12 @@ import './list-input.less'
 import { ClassNameHelper } from '../../../utils/Utils'
 import { FormInput, FormInputProps } from '../../../utils/PiziComponent/FormInput'
 import { Button } from '../../Controls/Button/Button'
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft'
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight'
+import { faChevronUp } from '@fortawesome/free-solid-svg-icons/faChevronUp'
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown'
+import { registerIcons } from "../../../utils/Utils"
+registerIcons(faChevronLeft, faChevronRight, faChevronUp, faChevronDown)
 
 export interface ListInputProps extends FormInputProps{
 	defaultValue?: string
