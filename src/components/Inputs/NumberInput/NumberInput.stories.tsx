@@ -1,7 +1,6 @@
-import React from 'react'
 import { defaultProps } from '../../../utils/PiziComponent/PiziComponent'
 import { NumberInput } from './NumberInput'
-import { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 const meta: Meta<typeof NumberInput> = {
 	title: 'Inputs/NumberInput',

@@ -1,7 +1,6 @@
-import React from 'react'
 import { Button } from './Button'
 import { defaultProps } from '../../../utils/PiziComponent/PiziComponent'
-import { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 const meta: Meta<typeof Button> =  {
   title: 'Controls/Button',

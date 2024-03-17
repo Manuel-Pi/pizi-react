@@ -1,7 +1,6 @@
-import React from 'react'
 import { defaultProps } from '../../../utils/PiziComponent/PiziComponent'
 import { Menu } from './Menu'
-import { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const meta: Meta<typeof Menu> =  {

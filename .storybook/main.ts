@@ -1,33 +1,27 @@
-import type { StorybookConfig } from "@storybook/react-webpack5"
+import type { StorybookConfig } from "@storybook/react-vite";
 
 const config: StorybookConfig = {
-  framework: "@storybook/react-webpack5",
-  stories: ["../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
+  stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
   addons: [
-    "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "@storybook/addon-onboarding",
-    "@storybook/addon-interactions",
-    "@storybook/addon-webpack5-compiler-swc"
+    "@chromatic-com/storybook",
+    "@storybook/addon-interactions"
   ],
-  docs: {
-    autodocs: "tag",
+  framework: {
+    name: "@storybook/react-vite",
+    options: {},
   },
-  webpackFinal: async (config) => {
-    config.module ||= {}
-    config.module.rules ||= []
-		config.module.rules.push({
-			test: /\.less$/,
-			use: [
-				{ loader: 'style-loader' },
-				{ loader: 'css-loader', options: { modules: false } },
-				{
-					loader: 'less-loader',
-					options: { lessOptions: { javascriptEnabled: true } },
-				},
-			],
-		});
-		return config;
-	}
-}
-export default config
+  async viteFinal(config) {
+    config.css = {
+      preprocessorOptions: {
+        less: {
+          math: "always",
+          relativeUrls: true,
+          javascriptEnabled: true
+        },
+      },
+    }
+    return config;
+  },
+};
+export default config;

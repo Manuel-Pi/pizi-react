@@ -1,11 +1,11 @@
 import React from 'react';
 import './menu.less'
-import { ComponentProps, GetComponentClassNames, InitProps } from '../../../utils/PiziComponent/PiziComponent'
-import { ClassNameHelper } from '../../../utils/Utils'
-import { IconName } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { type ComponentProps, GetComponentClassNames, InitProps } from '../../../utils/PiziComponent/PiziComponent'
+import { getClassName } from 'pizi-utils/dom'
+import type { IconName } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-export interface MenuProps extends ComponentProps{
+export interface MenuProps extends ComponentProps<HTMLDivElement>{
 	title: string
 	icon: React.ReactElement
 	links: {title: string, link: string, icon: IconName}[]
@@ -14,14 +14,14 @@ export interface MenuProps extends ComponentProps{
 /**
  * Menu UI component
  */
-export const Menu: React.FC<MenuProps & React.HTMLAttributes<HTMLDivElement>> = ({
+export const Menu: React.FC<MenuProps> = ({
 	links = [],
 	icon,
 	title,
 	...props
 }) => {
 	props = InitProps(props)
-	return 	<header className={ClassNameHelper(GetComponentClassNames("pizi-menu", {...props, appearance: undefined}))}>
+	return 	<header className={getClassName(GetComponentClassNames("pizi-menu", {...props, appearance: undefined}))}>
 				<div className="icon">{icon}</div>
 				<div className="title">{title}</div>
 				<ul className="menu">

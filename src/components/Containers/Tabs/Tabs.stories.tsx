@@ -1,8 +1,7 @@
-import React from 'react';
-import { defaultProps } from '../../../utils/PiziComponent/PiziComponent';
-import { Tab, Tabs } from './Tabs';
-import { Heading } from '../../Typography/Heading/Heading';
-import { Meta, StoryObj } from '@storybook/react';
+import { defaultProps } from '../../../utils/PiziComponent/PiziComponent'
+import { Tab, Tabs } from './Tabs'
+import { Heading } from '../../Typography/Heading/Heading'
+import type { Meta, StoryObj } from '@storybook/react'
 
 const meta: Meta<typeof Tabs> =  {
 	title: 'Containers/Tabs',

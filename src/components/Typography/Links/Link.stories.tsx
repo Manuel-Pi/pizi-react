@@ -1,8 +1,7 @@
-import React from 'react'
 import { defaultProps } from '../../../utils/PiziComponent/PiziComponent'
-import { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 import { Link } from './Link'
-import { MemoryRouter, RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { MemoryRouter } from 'react-router'
 
 const meta: Meta<typeof Link> = {
 	title: 'Typography/Links',

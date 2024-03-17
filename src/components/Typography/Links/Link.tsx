@@ -1,14 +1,14 @@
 import React from 'react'
-import { CleanProps, ComponentProps, GetComponentClassNames, InitProps } from '../../../utils/PiziComponent/PiziComponent'
+import { CleanProps, type ComponentProps } from '../../../utils/PiziComponent/PiziComponent'
 import './link.less'
-import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom'
+import { Link as RouterLink, type LinkProps as RouterLinkProps } from 'react-router'
+import { getClassName } from 'pizi-utils/dom'
 
 export interface LinkProps extends ComponentProps<HTMLAnchorElement>, Omit<RouterLinkProps, 'color'>{
 }
 
 export const Link: React.FC<LinkProps> = (props) => {
-	props = InitProps({ color: "white", appearance: "simple", ...props})
-	return  <RouterLink {...CleanProps(props)} className={GetComponentClassNames('pizi-link', props)}> 
+	return  <RouterLink {...CleanProps(props)} className={getClassName('pizi-link')}> 
 		        {props.children}
 	        </RouterLink>
 }

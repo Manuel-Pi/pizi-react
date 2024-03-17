@@ -1,12 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useId, useState } from 'react';
 import './switch.less';
-import { GetComponentClassNames } from '../../../utils/PiziComponent/PiziComponent';
-import { ClassNameHelper } from '../../../utils/Utils';
-import { FormInput, FormInputProps } from '../../../utils/PiziComponent/FormInput';
+import { getClassName } from 'pizi-utils/dom';
+import { FormInput, type FormInputProps } from '../../../utils/PiziComponent/FormInput'
 
 export interface SwitchProps extends FormInputProps{
 	onChange?: (value: boolean) => void
 	defaultValue?: boolean
+}
+
+let switchId = 0
+function getNextId(){
+	switchId++
+	return switchId
 }
 
 /**
@@ -19,10 +24,10 @@ export const Switch: React.FC<SwitchProps & Omit<React.HTMLAttributes<HTMLDivEle
 }) => {
 
 	const [checked, setChecked] = useState(defaultValue)
-	const inputId = 'pizi-checkbox' + (Math.floor(Math.random() * 1000))
+	const inputId = useId()
 
 	return 	<FormInput 	inputName="pizi-switch" 
-						className={ClassNameHelper({checked: checked})}
+						className={getClassName({checked: checked})}
 						{...{color: props.color, label: props.label}}
 						labelPosition={props.labelPosition}
 						inputId={inputId}>
@@ -37,7 +42,7 @@ export const Switch: React.FC<SwitchProps & Omit<React.HTMLAttributes<HTMLDivEle
 							checked={checked} 
 							readOnly={props.readOnly}
 							name={props.inputName}/>
-					<div className={ClassNameHelper("pizi-switch__input__checked", props.color)}></div>
+					<div className={getClassName("pizi-switch__input__checked", props.color)}></div>
 				</div>
 			</FormInput>
 };

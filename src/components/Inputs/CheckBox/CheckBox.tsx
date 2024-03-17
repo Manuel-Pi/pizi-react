@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useId, useState } from 'react'
 import './checkbox.less'
-import { ComponentProps, GetComponentClassNames } from '../../../utils/PiziComponent/PiziComponent'
-import { ClassNameHelper } from '../../../utils/Utils'
-import { FormInput, FormInputProps } from '../../../utils/PiziComponent/FormInput';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { getClassName } from 'pizi-utils/dom'
+import { FormInput, type FormInputProps } from '../../../utils/PiziComponent/FormInput'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck'
+import { registerIcons } from "../../../utils/Utils"
+registerIcons(faCheck)
 
-export interface CheckBoxProps extends FormInputProps{
+export interface CheckBoxProps extends FormInputProps<HTMLInputElement>{
 	onChange?: (value: boolean) => void
 	defaultValue?: boolean
 }
@@ -13,18 +15,18 @@ export interface CheckBoxProps extends FormInputProps{
 /**
  * CheckBox UI component
  */
-export const CheckBox: React.FC<CheckBoxProps & React.HTMLAttributes<HTMLDivElement>> = ({
+export const CheckBox: React.FC<CheckBoxProps> = ({
 	defaultValue = false,
 	onChange = () => null,
 	...props
 }) => {
 
 	const [checked, setChecked] = useState(defaultValue)
-	const inputId = 'pizi-checkbox' + (Math.floor(Math.random() * 1000))
+	const inputId = useId()
 
 	return 	<FormInput 	inputName="pizi-checkbox" 
 						labelPosition={props.labelPosition}
-						className={ClassNameHelper({checked: checked, inline: props.labelPosition})}
+						className={getClassName({checked: checked, inline: props.labelPosition})}
 						{...{color: props.color, label: props.label}}
 						inputId={inputId}>
 				<input type="checkbox" 
@@ -37,6 +39,6 @@ export const CheckBox: React.FC<CheckBoxProps & React.HTMLAttributes<HTMLDivElem
 						checked={checked} 
 						readOnly={props.readOnly}
 						name={props.inputName}/>
-				{checked && <FontAwesomeIcon icon="check" className={"checkbox__input__checked"}/>}
+				{checked && <FontAwesomeIcon icon="check" className={"checkbox__input__checked animate__animated animate__bounceIn animate__faster"}/>}
 			</FormInput>
 }

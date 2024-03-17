@@ -4,7 +4,7 @@ import { Modal } from './Modal'
 import { Heading } from '../../Typography/Heading/Heading'
 import { action } from '@storybook/addon-actions'
 import { Button } from '../../Controls/Button/Button'
-import { useArgs } from '@storybook/client-api'
+import { useArgs } from '@storybook/preview-api'
 import { Tab } from '../Tabs/Tabs'
 import type { Meta, StoryObj } from '@storybook/react'
 

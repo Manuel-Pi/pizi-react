@@ -1,36 +1,36 @@
 import React, { useEffect, useRef, useState } from 'react'
 import './accordion.less'
-import { ComponentProps, GetComponentClassNames, GetProps, InitProps } from '../../../utils/PiziComponent/PiziComponent'
-import { ClassNameHelper } from '../../../utils/Utils'
+import { type ComponentProps, GetComponentClassNames, GetProps, InitProps } from '../../../utils/PiziComponent/PiziComponent'
+import { getClassName } from 'pizi-utils/dom'
 import { Button } from '../../Controls/Button/Button'
 import { Heading } from '../../Typography/Heading/Heading'
 
 /**
  * Accordion Item
  */
-export interface AccordionItemProps extends ComponentProps{
+export interface AccordionItemProps extends ComponentProps<HTMLDivElement>{
 	title: string
 	default?: boolean
 }
 
-export const AccordionItem: React.FC<AccordionItemProps & React.HTMLAttributes<HTMLDivElement>> = (props) => 
-	<div className={ClassNameHelper("pizi-accordion-item pizi-container")}>
+export const AccordionItem: React.FC<AccordionItemProps> = (props) => 
+	<div className={getClassName("pizi-accordion-item pizi-container")}>
 		{props.children}
 	</div>
 
 /**
  * Accordion
  */
-export interface AccordionProps extends ComponentProps{
+export interface AccordionProps extends ComponentProps<HTMLDivElement>{
 	singleExpension?: boolean
 	statusIcon?: boolean
 }
 
-export const Accordion: React.FC<AccordionProps & React.HTMLAttributes<HTMLDivElement>> = ({
+export const Accordion = ({
 	singleExpension = true,
 	statusIcon = true,
 	...props
-}) => {
+}: AccordionProps) => {
 	props = InitProps(props)
 	const listRef = useRef<HTMLUListElement>(null)
 	const [openItems, setOpenItems] = useState<number[]>([])
@@ -65,10 +65,10 @@ export const Accordion: React.FC<AccordionProps & React.HTMLAttributes<HTMLDivEl
 		openItems.forEach(setItemHeight)
 	}, [openItems])
 
-	return <div className={ClassNameHelper("pizi-accordion")}>
+	return <div className={getClassName("pizi-accordion")}>
 				<ul ref={listRef}>
 				{
-					items.map((item, index) => 	<li key={index} className={ClassNameHelper(GetComponentClassNames("item", props), { open: openItems.includes(index) })}>
+					items.map((item, index) => 	<li key={index} className={getClassName(GetComponentClassNames("item", props), { open: openItems.includes(index) })}>
 													<Heading tag="h3">
 														<Button onClick={() => toogleItem(index)} {...GetProps(props)}>{item.props.title}</Button>
 														<i className={GetComponentClassNames("", {

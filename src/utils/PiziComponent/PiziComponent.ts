@@ -1,5 +1,6 @@
-import { ClassNameHelper, filterObject } from '../Utils'
-import { FormInputProps } from './FormInput'
+import { getClassName } from "pizi-utils/dom"
+import { filterObject } from "pizi-utils/objects"
+import type { FormInputProps } from './FormInput'
 
 export type Theme = 'default' | 'alt'
 export type Appeareance = 'fill' | 'border' | 'simple'
@@ -25,7 +26,7 @@ export const defaultProps: any = {
 export const GetComponentClassNames = (classname: string = "", props: ComponentProps | FormInputProps, ...args: (string | {[key: string]: any} | undefined)[]) => {
 	props = { ...defaultProps, ...props }
 	if(props.alt) props.color = GetAltColor(props.color)
-	return ClassNameHelper(classname, props.className, props.appearance, props.size, props.color, {
+	return getClassName(classname, props.className, props.appearance, props.size, props.color, {
 		hidden: !props.display
 	}, ...args)
 }

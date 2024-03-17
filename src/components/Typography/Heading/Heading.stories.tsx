@@ -1,7 +1,6 @@
-import React from 'react'
 import { Heading } from './Heading'
 import { defaultProps } from '../../../utils/PiziComponent/PiziComponent'
-import { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 const meta: Meta<typeof Heading> = {
 	title: 'Typography/Headings',
