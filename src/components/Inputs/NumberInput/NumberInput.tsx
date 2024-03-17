@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import './number-input.less';
-import { ComponentProps, GetComponentClassNames } from '../../../utils/PiziComponent/PiziComponent';
-import { ClassNameHelper } from '../../../utils/Utils';
-import { FormInput, FormInputProps } from '../../../utils/PiziComponent/FormInput';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Button } from '../../Controls/Button/Button';
+import React, { useEffect, useState } from 'react'
+import './number-input.less'
+import { FormInput, FormInputProps } from '../../../utils/PiziComponent/FormInput'
+import { Button } from '../../Controls/Button/Button'
+import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus'
+import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus'
+import { registerIcons } from "../../../utils/Utils"
+registerIcons(faMinus, faPlus)
 
-export interface NumberInputProps extends FormInputProps{
+export interface NumberInputProps extends FormInputProps<HTMLInputElement>{
 	step?: number
 	max?: number
 	min?: number
@@ -18,7 +19,7 @@ export interface NumberInputProps extends FormInputProps{
 /**
  * NumberInput UI component
  */
-export const NumberInput: React.FC<NumberInputProps & Omit<React.HTMLAttributes<HTMLDivElement>, "onChange">> = ({
+export const NumberInput: React.FC<NumberInputProps> = ({
 	step = 1,
 	min = 0,
 	max = 100,
@@ -45,6 +46,7 @@ export const NumberInput: React.FC<NumberInputProps & Omit<React.HTMLAttributes<
 				{...{color: props.color, label: props.label}}>
 				<Button icon="minus" onClick={() => setCleanValue(value - step)} disabled={props.readOnly || (min !== null && value <= min)} appearance="simple"/>
 				<input 	type="number" 
+						className='animate__animated animate__slideInRight'
 						name={props.inputName}
 						readOnly={props.readOnly} 
 						value={value} 
@@ -52,6 +54,6 @@ export const NumberInput: React.FC<NumberInputProps & Omit<React.HTMLAttributes<
 						step={step} 
 						min={min} 
 						max={max}/>
-				<Button icon="plus" onClick={() => setCleanValue(value + step)} disabled={props.readOnly || (max !== undefined && value >= max)} appearance="simple"/>
+				<Button icon="plus" onClick={() => setCleanValue(value + step)} disabled={props.readOnly || (max !== undefined && value >= max)} appearance="simple"/>
 			</FormInput>
 };

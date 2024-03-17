@@ -1,7 +1,7 @@
 import React from 'react';
 import './form-input.less';
 import { ComponentProps } from './PiziComponent';
-export interface FormInputProps extends Omit<ComponentProps, "defaultValue" | "onChange" | "onError" | "appearance"> {
+export interface FormInputProps<T = HTMLElement> extends Omit<ComponentProps<T>, "defaultValue" | "onChange" | "onError" | "appearance"> {
     className?: string;
     inputName?: string;
     readOnly?: boolean;
@@ -16,4 +16,4 @@ export interface FormInputProps extends Omit<ComponentProps, "defaultValue" | "o
 /**
  * Base Form Input UI component
  */
-export declare const FormInput: React.FC<FormInputProps & React.HTMLAttributes<HTMLInputElement>>;
+export declare const FormInput: React.FC<FormInputProps>;

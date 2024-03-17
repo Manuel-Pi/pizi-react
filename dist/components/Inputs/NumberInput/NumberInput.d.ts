@@ -1,7 +1,7 @@
 import React from 'react';
 import './number-input.less';
 import { FormInputProps } from '../../../utils/PiziComponent/FormInput';
-export interface NumberInputProps extends FormInputProps {
+export interface NumberInputProps extends FormInputProps<HTMLInputElement> {
     step?: number;
     max?: number;
     min?: number;
@@ -12,4 +12,4 @@ export interface NumberInputProps extends FormInputProps {
 /**
  * NumberInput UI component
  */
-export declare const NumberInput: React.FC<NumberInputProps & Omit<React.HTMLAttributes<HTMLDivElement>, "onChange">>;
+export declare const NumberInput: React.FC<NumberInputProps>;

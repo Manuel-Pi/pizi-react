@@ -1,14 +1,14 @@
-import React, { useState, useEffect, Ref} from 'react';
-import './text-input.less';
-import { ClassNameHelper } from '../../../utils/Utils';
-import { FormInput, FormInputProps } from '../../../utils/PiziComponent/FormInput';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Button } from '../../Controls/Button/Button';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import {faEye} from '@fortawesome/free-regular-svg-icons/faEye';
-import {faEyeSlash} from '@fortawesome/free-regular-svg-icons/faEyeSlash';
+import React, { useState, useEffect, Ref} from 'react'
+import './text-input.less'
+import { ClassNameHelper } from '../../../utils/Utils'
+import { FormInput, FormInputProps } from '../../../utils/PiziComponent/FormInput'
+import { Button } from '../../Controls/Button/Button'
+import { registerIcons } from "../../../utils/Utils"
+import { faEye } from '@fortawesome/free-regular-svg-icons/faEye'
+import { faEyeSlash } from '@fortawesome/free-regular-svg-icons/faEyeSlash'
+registerIcons(faEye, faEyeSlash)
 
-export interface TextInputProps extends FormInputProps{
+export interface TextInputProps extends FormInputProps<HTMLInputElement>{
 	defaultValue?: string
 	type?: string
 	valdationRegex?: RegExp

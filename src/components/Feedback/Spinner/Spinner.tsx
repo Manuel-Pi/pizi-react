@@ -3,7 +3,7 @@ import './spinner.less'
 import { ComponentProps, GetComponentClassNames } from '../../../utils/PiziComponent/PiziComponent'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-export interface SpinnerProps extends Omit<ComponentProps, "appearance">{
+export interface SpinnerProps extends Omit<ComponentProps<HTMLDivElement>, "appearance">{
 	type: 'spinner' | 'circle-notch' | 'sync' | 'sync-alt' | 'cog' | 'fan' | 'compact-disc'
 	label?: string
 }
@@ -11,7 +11,7 @@ export interface SpinnerProps extends Omit<ComponentProps, "appearance">{
 /**
  * Spinner UI component
  */
-export const Spinner: React.FC<SpinnerProps & React.HTMLAttributes<HTMLDivElement>> = ({
+export const Spinner: React.FC<SpinnerProps> = ({
 	type = "spinner",
 	label = null,
 	...props

@@ -3,6 +3,7 @@
 .error-screen{
     margin: 1em auto;
     display: flex;
+    overflow: hidden;
 
     h1{
         text-align: center;
@@ -11,11 +12,62 @@
         font-size: 1.4em;
         text-align: center;
     }
-    svg{
+    > svg{
         margin-top: 0.2em;
         font-size: 6em;
+        &.animate__tada{
+            animation-name: super-tada;
+            animation-duration: 1.4s;
+        }
     }
     a{
         margin: 1em auto;
     }
+
+    .pizi-button{
+        width: 200px;
+        margin: auto;
+        margin-top: 3em;
+        margin-bottom: 6em;
+    }
+
+    .home-link{
+        animation-delay: 0.4s;
+        svg{
+            opacity: 0.6;
+        }
+    }
 }
+
+@keyframes super-tada {
+    from {
+      -webkit-transform: scale3d(1, 1, 1);
+      transform: scale3d(1, 1, 1);
+    }
+  
+    5%,
+    10% {
+      -webkit-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+      transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+    }
+  
+    15%,
+    25%,
+    40%,
+    50%{
+      -webkit-transform: scale3d(1.6, 1.6, 1.6) rotate3d(0, 0, 1, 3deg);
+      transform: scale3d(1.6, 1.6, 1.6) rotate3d(0, 0, 1, 3deg);
+    }
+  
+    20%,
+    30%,
+    45% {
+      -webkit-transform: scale3d(1.6, 1.6, 1.6) rotate3d(0, 0, 1, -3deg);
+      transform: scale3d(1.6, 1.6, 1.6) rotate3d(0, 0, 1, -3deg);
+    }
+  
+    to {
+      -webkit-transform: scale3d(1, 1, 1);
+      transform: scale3d(1, 1, 1);
+    }
+  }

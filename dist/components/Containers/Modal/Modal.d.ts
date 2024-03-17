@@ -1,7 +1,7 @@
 import React from 'react';
 import './modal.less';
 import { ComponentProps } from '../../../utils/PiziComponent/PiziComponent';
-export interface ModalProps extends ComponentProps {
+export interface ModalProps extends ComponentProps<HTMLDivElement> {
     type?: 'info' | 'confirm' | 'custom';
     open?: boolean;
     onClose?: (closeActionName: string | undefined) => void | boolean;
@@ -15,4 +15,4 @@ export interface ModalProps extends ComponentProps {
 /**
  * Modal UI component
  */
-export declare const Modal: React.FC<ModalProps & React.HTMLAttributes<HTMLDivElement>>;
+export declare const Modal: React.FC<ModalProps>;

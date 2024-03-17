@@ -1,14 +1,14 @@
 import React from 'react';
 import './alert.less';
 import { ComponentProps } from '../../../utils/PiziComponent/PiziComponent';
-export interface AlertProps extends ComponentProps {
+export interface AlertProps extends ComponentProps<HTMLDivElement> {
     timeout?: number;
     content?: any;
 }
 /**
  * Alert UI component
  */
-export declare const Alert: React.FC<AlertProps & React.HTMLAttributes<HTMLDivElement>>;
+export declare const Alert: React.FC<AlertProps>;
 export interface AlertsProps {
     alerts: AlertProps[];
 }

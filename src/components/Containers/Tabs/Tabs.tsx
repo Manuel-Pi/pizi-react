@@ -19,7 +19,7 @@ export interface TabsProps extends ComponentProps {
 	tabsPosition?: "top" | "left"
 }
 
-export const Tabs: React.FC<TabsProps & React.HTMLAttributes<HTMLDivElement>> = ({
+export const Tabs: React.FC<TabsProps> = ({
 	tabsPosition = "top",
 	...props
 }) => {
@@ -72,8 +72,4 @@ export const Tabs: React.FC<TabsProps & React.HTMLAttributes<HTMLDivElement>> = 
 				</ul>
 				{currentTab}
 	        </div>
-}
-
-Tabs.defaultProps = {
-	appearance: "fill"
 }

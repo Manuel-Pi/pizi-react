@@ -1,11 +1,10 @@
-import { IconName } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import { CleanProps, ComponentProps, GetComponentClassNames, InitProps } from '../../../utils/PiziComponent/PiziComponent'
 import './button.less'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 
-export interface ButtonProps extends ComponentProps{
+export interface ButtonProps extends ComponentProps<HTMLButtonElement> {
 	icon?: IconProp
 	iconLeft?: IconProp
 	iconRight?: IconProp

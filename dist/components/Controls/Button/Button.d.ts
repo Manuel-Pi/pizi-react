@@ -2,7 +2,7 @@ import React from 'react';
 import { ComponentProps } from '../../../utils/PiziComponent/PiziComponent';
 import './button.less';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
-export interface ButtonProps extends ComponentProps {
+export interface ButtonProps extends ComponentProps<HTMLButtonElement> {
     icon?: IconProp;
     iconLeft?: IconProp;
     iconRight?: IconProp;

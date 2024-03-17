@@ -8,12 +8,12 @@ import { Heading } from '../../Typography/Heading/Heading'
 /**
  * Accordion Item
  */
-export interface AccordionItemProps extends ComponentProps{
+export interface AccordionItemProps extends ComponentProps<HTMLDivElement>{
 	title: string
 	default?: boolean
 }
 
-export const AccordionItem: React.FC<AccordionItemProps & React.HTMLAttributes<HTMLDivElement>> = (props) => 
+export const AccordionItem: React.FC<AccordionItemProps> = (props) => 
 	<div className={ClassNameHelper("pizi-accordion-item pizi-container")}>
 		{props.children}
 	</div>
@@ -21,12 +21,12 @@ export const AccordionItem: React.FC<AccordionItemProps & React.HTMLAttributes<H
 /**
  * Accordion
  */
-export interface AccordionProps extends ComponentProps{
+export interface AccordionProps extends ComponentProps<HTMLDivElement>{
 	singleExpension?: boolean
 	statusIcon?: boolean
 }
 
-export const Accordion: React.FC<AccordionProps & React.HTMLAttributes<HTMLDivElement>> = ({
+export const Accordion: React.FC<AccordionProps> = ({
 	singleExpension = true,
 	statusIcon = true,
 	...props

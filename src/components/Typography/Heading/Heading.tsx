@@ -1,5 +1,5 @@
 import React from 'react'
-import { ComponentProps, GetComponentClassNames, InitProps } from '../../../utils/PiziComponent/PiziComponent'
+import { ComponentProps, GetComponentClassNames } from '../../../utils/PiziComponent/PiziComponent'
 import './heading.less'
 
 export interface HeadingProps extends Omit<ComponentProps, 'size'>{

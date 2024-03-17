@@ -1,7 +1,7 @@
 import React from 'react';
 import './list-input.less';
 import { FormInputProps } from '../../../utils/PiziComponent/FormInput';
-export interface ListInputProps extends FormInputProps {
+export interface ListInputProps extends FormInputProps<HTMLDivElement> {
     defaultValue?: string;
     values: string[] | ValueObject[];
     type?: 'horizontal' | 'vertical';
@@ -14,5 +14,5 @@ interface ValueObject {
 /**
  * ListInput UI component
  */
-export declare const ListInput: React.FC<ListInputProps & Omit<React.HTMLAttributes<HTMLDivElement>, "onChange">>;
+export declare const ListInput: React.FC<ListInputProps>;
 export {};

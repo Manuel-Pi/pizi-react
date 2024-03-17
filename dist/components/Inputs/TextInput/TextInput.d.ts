@@ -1,7 +1,7 @@
 import React, { Ref } from 'react';
 import './text-input.less';
 import { FormInputProps } from '../../../utils/PiziComponent/FormInput';
-export interface TextInputProps extends FormInputProps {
+export interface TextInputProps extends FormInputProps<HTMLInputElement> {
     defaultValue?: string;
     type?: string;
     valdationRegex?: RegExp;
