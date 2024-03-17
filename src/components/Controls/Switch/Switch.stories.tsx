@@ -1,7 +1,6 @@
-import React from 'react'
 import { defaultProps } from '../../../utils/PiziComponent/PiziComponent'
 import { Switch } from './Switch'
-import { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 const meta: Meta<typeof Switch> =  {
 	title: 'Controls/Switch',

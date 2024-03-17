@@ -1,14 +1,16 @@
-import React, { ReactElement, useEffect, useState } from 'react'
+import React, { type ReactElement, useEffect, useState } from 'react'
 import './modal.less'
-import { ComponentProps, GetAltColorFromTest, GetComponentClassNames, InitProps } from '../../../utils/PiziComponent/PiziComponent'
-import { ClassNameHelper } from '../../../utils/Utils'
+import { type ComponentProps, GetAltColorFromTest, GetComponentClassNames, InitProps } from '../../../utils/PiziComponent/PiziComponent'
+import { getClassName } from 'pizi-utils/dom'
 import { Button } from '../../Controls/Button/Button'
 import { Heading } from '../../Typography/Heading/Heading'
 import { ButtonGroup } from '../../Controls/ButtonGroup/ButtonGroup'
-import { TabProps, Tabs, TabsProps } from '../Tabs/Tabs'
-import { Tab } from '../../..'
+import { Tab, type TabProps, Tabs, type TabsProps } from '../Tabs/Tabs'
+import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes'
+import { registerIcons } from "../../../utils/Utils"
+registerIcons(faTimes)
 
-export interface ModalProps extends ComponentProps{
+export interface ModalProps extends ComponentProps<HTMLDivElement>{
 	type?: 'info' | 'confirm' | 'custom'
 	open?: boolean
 	onClose?: (closeActionName: string | undefined) => void | boolean
@@ -23,7 +25,7 @@ export interface ModalProps extends ComponentProps{
 /**
  * Modal UI component
  */
-export const Modal: React.FC<ModalProps & React.HTMLAttributes<HTMLDivElement>> = ({
+export const Modal: React.FC<ModalProps> = ({
 	type = "info",
 	open = false,
 	onClose = () => {},
@@ -94,7 +96,7 @@ export const Modal: React.FC<ModalProps & React.HTMLAttributes<HTMLDivElement>> 
 		if(!currentTab) currentTabEl = tabs[0]
 	}
 
-	return <div className={ClassNameHelper("pizi-modal", className, {
+	return <div className={getClassName("pizi-modal", className, {
 															"hidden": isClosed,
 															"pizi-modal-tabs": !!tabs.length
 														})}>
@@ -113,12 +115,12 @@ export const Modal: React.FC<ModalProps & React.HTMLAttributes<HTMLDivElement>> 
 						onClosed(closedBy)
 					}}>
 					{
-						(header || tabs.length !== 0) && <header className={ClassNameHelper("border-alt-light", {"pizi-tabs": !!tabs.length})}>
+						(header || tabs.length !== 0) && <header className={getClassName("border-alt-light", {"pizi-tabs": !!tabs.length})}>
 									{
 										typeof header === "string" ? <Heading tag="h1" className="alt">{header}</Heading> : header 
 									}
 									{
-										tabs.length ? 	<ul className={ClassNameHelper("border-light", props.appearance, props.color, { simple: !!tabs.length })}>
+										tabs.length ? 	<ul className={getClassName("border-light", props.appearance, props.color, { simple: !!tabs.length })}>
 														{
 															tabs.map((tab, index) => (tab.props.display === undefined || tab.props.display) && 	<li key={index} 
 																																					className={GetComponentClassNames("pizi-li", props, { current: index === currentTab })}>
@@ -135,7 +137,7 @@ export const Modal: React.FC<ModalProps & React.HTMLAttributes<HTMLDivElement>> 
 									</header>
 					}
 					{
-						tabs.length ? currentTabEl! : <div className={ClassNameHelper("pizi-container", GetAltColorFromTest(props.appearance === "fill", props.color))}>
+						tabs.length ? currentTabEl! : <div className={getClassName("pizi-container", GetAltColorFromTest(props.appearance === "fill", props.color))}>
 														{childs}
 													</div>
 					}
@@ -149,8 +151,4 @@ export const Modal: React.FC<ModalProps & React.HTMLAttributes<HTMLDivElement>> 
 					{closeButton && <Button name="close-cross" icon="times" align="right" className="alt" appearance={"simple"} onClick={closeModal}/>}
 				</div>
 			</div>
-}
-
-Modal.defaultProps = {
-	appearance: "fill"
 }

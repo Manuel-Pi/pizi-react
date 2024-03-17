@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef, ReactElement } from 'react'
+import React, { useState, useEffect, useRef, type ReactElement, type JSX } from 'react'
 import './tabs.less'
-import { ComponentProps, GetComponentClassNames, GetProps, InitProps } from '../../../utils/PiziComponent/PiziComponent'
-import { ClassNameHelper } from '../../../utils/Utils'
+import { type ComponentProps, GetComponentClassNames, GetProps, InitProps } from '../../../utils/PiziComponent/PiziComponent'
+import { getClassName } from 'pizi-utils/dom'
 import { Button } from '../../Controls/Button/Button'
 
 export interface TabProps extends Omit<ComponentProps, 'title'> {
@@ -19,7 +19,7 @@ export interface TabsProps extends ComponentProps {
 	tabsPosition?: "top" | "left"
 }
 
-export const Tabs: React.FC<TabsProps & React.HTMLAttributes<HTMLDivElement>> = ({
+export const Tabs: React.FC<TabsProps> = ({
 	tabsPosition = "top",
 	...props
 }) => {
@@ -54,8 +54,8 @@ export const Tabs: React.FC<TabsProps & React.HTMLAttributes<HTMLDivElement>> = 
 	let currentTab = tabs.filter((tab, index) => index === current)[0]
 	if(!currentTab) currentTab = tabs[0]
 	
-	return 	<div className={ClassNameHelper("pizi-tabs", {["tabs-position-" + tabsPosition]: !!tabsPosition})}>
-				<ul ref={listRef} className={ClassNameHelper("border-light", props.appearance, props.color)}>
+	return 	<div className={getClassName("pizi-tabs", {["tabs-position-" + tabsPosition]: !!tabsPosition})}>
+				<ul ref={listRef} className={getClassName("border-light", props.appearance, props.color)}>
 				{
 					tabs.map((tab, index) => (tab.props.display === undefined || tab.props.display) && 	<li key={index} 
 																		className={GetComponentClassNames("pizi-li", props, {current: index === current})}>
@@ -72,8 +72,4 @@ export const Tabs: React.FC<TabsProps & React.HTMLAttributes<HTMLDivElement>> = 
 				</ul>
 				{currentTab}
 	        </div>
-}
-
-Tabs.defaultProps = {
-	appearance: "fill"
 }

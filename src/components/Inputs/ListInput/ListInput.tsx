@@ -1,10 +1,16 @@
 import React, { useState, useRef, useEffect} from 'react'
 import './list-input.less'
-import { ClassNameHelper } from '../../../utils/Utils'
-import { FormInput, FormInputProps } from '../../../utils/PiziComponent/FormInput'
+import { getClassName } from 'pizi-utils/dom'
+import { FormInput, type FormInputProps } from '../../../utils/PiziComponent/FormInput'
 import { Button } from '../../Controls/Button/Button'
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft'
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight'
+import { faChevronUp } from '@fortawesome/free-solid-svg-icons/faChevronUp'
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown'
+import { registerIcons } from "../../../utils/Utils"
+registerIcons(faChevronLeft, faChevronRight, faChevronUp, faChevronDown)
 
-export interface ListInputProps extends FormInputProps{
+export interface ListInputProps extends FormInputProps<HTMLDivElement>{
 	defaultValue?: string
 	values: string[] | ValueObject[]
 	type?: 'horizontal' | 'vertical'
@@ -19,7 +25,7 @@ interface ValueObject{
 /**
  * ListInput UI component
  */
-export const ListInput: React.FC<ListInputProps & Omit<React.HTMLAttributes<HTMLDivElement>, "onChange">> = ({
+export const ListInput: React.FC<ListInputProps> = ({
 	values,
 	type = 'horizontal',
 	onChange = () => null,
@@ -111,7 +117,7 @@ export const ListInput: React.FC<ListInputProps & Omit<React.HTMLAttributes<HTML
 	}
 
 	return 	<FormInput inputName="pizi-list-input" 
-				className={ClassNameHelper({
+				className={getClassName({
 					[type]: !!type
 				})}
 				{...props}>

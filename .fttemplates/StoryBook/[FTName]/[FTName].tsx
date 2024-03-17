@@ -1,7 +1,7 @@
 import React from 'react';
 import './[FTName | lowercase].less'
 import { ComponentProps, GetComponentClassNames } from '../../../utils/PiziComponent/PiziComponent'
-import { ClassNameHelper } from '../../../utils/Utils'
+import { getClassName } from 'pizi-utils/dom'
 
 export interface [FTName]Props extends ComponentProps{
 }
@@ -12,7 +12,7 @@ export interface [FTName]Props extends ComponentProps{
 export const [FTName]: React.FC<[FTName]Props & React.HTMLAttributes<HTMLDivElement>> = ({
 	...props
 }) => {
-	return 	<div className={ClassNameHelper(GetComponentClassNames("pizi-[FTName | lowercase]", {...props}))}>
+	return 	<div className={getClassName(GetComponentClassNames("pizi-[FTName | lowercase]", {...props}))}>
 
 	        </div>
 }

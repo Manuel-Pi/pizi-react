@@ -1,9 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './alert.less'
-import { ComponentProps, GetComponentClassNames, InitProps } from '../../../utils/PiziComponent/PiziComponent'
+import { type ComponentProps, GetComponentClassNames, InitProps } from '../../../utils/PiziComponent/PiziComponent'
 import { Button } from '../../Controls/Button/Button'
+import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes'
+import { registerIcons } from "../../../utils/Utils"
+registerIcons(faTimes)
 
-export interface AlertProps extends ComponentProps{
+export interface AlertProps extends ComponentProps<HTMLDivElement>{
 	timeout?: number
 	content?: any
 }
@@ -11,7 +14,7 @@ export interface AlertProps extends ComponentProps{
 /**
  * Alert UI component
  */
-export const Alert: React.FC<AlertProps & React.HTMLAttributes<HTMLDivElement>> = ({
+export const Alert: React.FC<AlertProps> = ({
 	timeout = 4000,
 	color = 'blue',
 	content,
@@ -50,13 +53,21 @@ export interface AlertsProps{
 }
 
 export const Alerts: React.FC<AlertsProps & React.HTMLAttributes<HTMLDivElement>> = ({
-	alerts = [],
-	...props
+	alerts = []
 }) => {
+
+	useEffect(() => {}, [alerts])
 
 	return 	<div className="pizi-alerts">
 			{
-				alerts.map(alert => <Alert {...alert}>{alert.content}</Alert>)
+				alerts.map((alert, index) => {
+
+					setTimeout(() => {
+						alerts.splice(index, 1)
+					}, alert.timeout || 4000)
+
+					return <Alert {...alert}>{alert.content}</Alert>
+				})
 			}
 			</div>
 }

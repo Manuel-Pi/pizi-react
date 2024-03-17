@@ -1,14 +1,14 @@
 import React, { createElement } from 'react';
 import './list.less'
-import { ComponentProps, GetComponentClassNames, InitProps } from '../../../utils/PiziComponent/PiziComponent'
-import { ClassNameHelper } from '../../../utils/Utils'
+import { type ComponentProps, GetComponentClassNames } from '../../../utils/PiziComponent/PiziComponent'
+import { getClassName } from 'pizi-utils/dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { IconName, IconPrefix } from '@fortawesome/free-solid-svg-icons';
+import type { IconName, IconPrefix } from '@fortawesome/free-solid-svg-icons';
 
-export interface ListProps extends ComponentProps{
+export interface ListProps extends ComponentProps<HTMLUListElement>{
 	type?: 'ul' | 'ol'
 	styleType?: 'dot' | 'circle' | 'donut' | 'circle-dot' | 'square' | 'empty-square' | 'arrow' | 'chevron' | 'caret'
-	items: string[] | React.JSX.Element[]
+	items: string[] | React.ReactElement[]
 }
 
 function getIcon(styleType: ListProps["styleType"]): [IconPrefix, IconName]{
@@ -38,7 +38,7 @@ function getIcon(styleType: ListProps["styleType"]): [IconPrefix, IconName]{
 /**
  * List UI component
  */
-export const List: React.FC<ListProps & React.HTMLAttributes<HTMLUListElement>> = ({
+export const List: React.FC<ListProps> = ({
 	appearance = 'simple',
 	type = 'ul',
 	styleType = 'dot',
@@ -47,11 +47,11 @@ export const List: React.FC<ListProps & React.HTMLAttributes<HTMLUListElement>> 
 	...props
 }) => {
 
-	const ulMarker = <FontAwesomeIcon className={ClassNameHelper('bullet', color)} icon={getIcon(styleType)} />
-	const olMarker = (index: number) => <span className={ClassNameHelper('bullet', color)}>{index}</span>
+	const ulMarker = <FontAwesomeIcon className={getClassName('bullet', color)} icon={getIcon(styleType)} />
+	const olMarker = (index: number) => <span className={getClassName('bullet', color)}>{index}</span>
 
 	return createElement(type, {
-		className: ClassNameHelper(GetComponentClassNames("pizi-list", {appearance, ...props}), type),
+		className: getClassName(GetComponentClassNames("pizi-list", {appearance, ...props}), type),
 		...props 
 	}, items.map((item, index) => <li key={index}>
 									{

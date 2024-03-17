@@ -1,4 +1,3 @@
-import React from 'react'
 import { defaultProps } from '../../../utils/PiziComponent/PiziComponent'
 import { List } from './List'
 import type { Meta, StoryObj } from '@storybook/react'

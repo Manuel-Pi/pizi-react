@@ -1,15 +1,19 @@
-import React, { ReactElement, useEffect, useState } from 'react'
+import React, { type ReactElement, useEffect, useState } from 'react'
 import './menubar.less'
-import { ComponentProps, GetAltColorFromTest, GetComponentClassNames, GetProps } from '../../../utils/PiziComponent/PiziComponent'
-import { ClassNameHelper } from '../../../utils/Utils'
+import { type ComponentProps, GetAltColorFromTest, GetComponentClassNames, GetProps } from '../../../utils/PiziComponent/PiziComponent'
+import { getClassName } from 'pizi-utils/dom'
 import { ButtonGroup } from '../../Controls/ButtonGroup/ButtonGroup'
 import { Button } from '../../Controls/Button/Button'
 import { MenuItem } from './MenuItem'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { PiziRoute } from './MenuApp'
-import { NavLink } from 'react-router-dom'
+import type { PiziRoute } from './MenuApp'
+import { NavLink } from 'react-router'
+import { faBars } from '@fortawesome/free-solid-svg-icons/faBars'
+import { faUser } from '@fortawesome/free-solid-svg-icons/faUser'
+import { registerIcons } from "../../../utils/Utils"
+registerIcons(faBars, faUser)
 
-export interface MenuBarProps extends ComponentProps{
+export interface MenuBarProps extends ComponentProps<HTMLDivElement>{
 	logo?: ReactElement
 	user?: string
 	routes: PiziRoute[]
@@ -19,7 +23,7 @@ export interface MenuBarProps extends ComponentProps{
 	menuBottom?: React.ReactElement
 }
 
-export const MenuBar: React.FC<MenuBarProps & React.HTMLAttributes<HTMLDivElement>> = React.memo(({
+export const MenuBar: React.FC<MenuBarProps> = React.memo(({
 	routes,
 	user,
 	open = false,
@@ -52,16 +56,16 @@ export const MenuBar: React.FC<MenuBarProps & React.HTMLAttributes<HTMLDivElemen
 
 	const menuBarColor = GetAltColorFromTest(props.appearance === "fill", props.color)
 
-	return <div className={ClassNameHelper("pizi-menubar", {"open": openState})}>
+	return <div className={getClassName("pizi-menubar", {"open": openState})}>
 				<div className={GetComponentClassNames("pizi-menubar__bar border-alt-light", {
 						...props, 
 						alt: props.appearance !== "fill"
 					})}>
-					<NavLink to="/" className={ClassNameHelper("pizi-menubar__bar__logo", menuBarColor)}>
+					<NavLink to="/" className={getClassName("pizi-menubar__bar__logo simple", menuBarColor)}>
 						{props.logo}
 					</NavLink>
 					{
-						user && <div className={ClassNameHelper("pizi-menubar__bar__user", menuBarColor)}>
+						user && <div className={getClassName("pizi-menubar__bar__user", menuBarColor)}>
 									<FontAwesomeIcon icon="user"/>
 									<div>
 										<label>user</label>

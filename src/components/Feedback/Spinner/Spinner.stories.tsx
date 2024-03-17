@@ -1,7 +1,6 @@
-import React from 'react'
 import { defaultProps } from '../../../utils/PiziComponent/PiziComponent'
 import { Spinner } from './Spinner'
-import { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 const meta: Meta<typeof Spinner> =  {
 	title: 'Feedback/Spinner',

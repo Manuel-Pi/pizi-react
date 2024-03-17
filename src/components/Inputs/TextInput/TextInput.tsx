@@ -1,14 +1,14 @@
-import React, { useState, useEffect, Ref} from 'react';
-import './text-input.less';
-import { ClassNameHelper } from '../../../utils/Utils';
-import { FormInput, FormInputProps } from '../../../utils/PiziComponent/FormInput';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Button } from '../../Controls/Button/Button';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import {faEye} from '@fortawesome/free-regular-svg-icons/faEye';
-import {faEyeSlash} from '@fortawesome/free-regular-svg-icons/faEyeSlash';
+import React, { useState, useEffect, type Ref} from 'react'
+import './text-input.less'
+import { getClassName } from 'pizi-utils/dom'
+import { FormInput, type FormInputProps } from '../../../utils/PiziComponent/FormInput'
+import { Button } from '../../Controls/Button/Button'
+import { registerIcons } from "../../../utils/Utils"
+import { faEye } from '@fortawesome/free-regular-svg-icons/faEye'
+import { faEyeSlash } from '@fortawesome/free-regular-svg-icons/faEyeSlash'
+registerIcons(faEye, faEyeSlash)
 
-export interface TextInputProps extends FormInputProps{
+export interface TextInputProps extends FormInputProps<HTMLInputElement>{
 	defaultValue?: string
 	type?: string
 	valdationRegex?: RegExp
@@ -77,13 +77,13 @@ export const TextInput: React.FC<TextInputProps & Omit<React.InputHTMLAttributes
 	useEffect(() => setType(type), [type])
 
 	return 	<FormInput inputName="pizi-text-input" 
-				className={ClassNameHelper({color: props.color}, props.className)}
+				className={getClassName({color: props.color}, props.className)}
 				{...{color: props.color, label: props.label, error, appearance: props.appearance, display: display}}>
 				<input 	{...props as React.HTMLAttributes<HTMLInputElement>}
 						type={inputType} 
 						ref={forwardRef}
 						name={props.inputName}
-						className={ClassNameHelper({password: type === "password"})}
+						className={getClassName({password: type === "password"})}
 						value={value} 
 						autoFocus={props.autoFocus}
 						onBlur={validate}

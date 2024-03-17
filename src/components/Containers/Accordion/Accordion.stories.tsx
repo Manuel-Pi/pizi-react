@@ -1,4 +1,3 @@
-import React from 'react'
 import { defaultProps } from '../../../utils/PiziComponent/PiziComponent'
 import { Accordion, AccordionItem } from './Accordion'
 import { Heading } from '../../Typography/Heading/Heading'

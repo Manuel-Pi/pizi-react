@@ -1,9 +1,8 @@
-import React from 'react'
 import { Pagination } from './Pagination'
 import { defaultProps } from '../../../utils/PiziComponent/PiziComponent'
 import { Table } from '../../Data/Table/Table'
 import { useState } from '@storybook/preview-api'
-import { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 const meta: Meta<typeof Pagination> =  {
 	title: 'Controls/Pagination',
